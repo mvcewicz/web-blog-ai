@@ -50,7 +50,8 @@ function BlogLoadMoreComments() {
   );
 }
 
-export async function BlogComments({ slug }: BlogCommentsProps) {
+export async function BlogComments(props: BlogCommentsProps) {
+  const { slug } = props;
   const { comments, pagination } = await fetchBlogComments(slug);
   return (
     <CommentsContextProvider
@@ -58,7 +59,7 @@ export async function BlogComments({ slug }: BlogCommentsProps) {
       slug={slug}
       nextCursor={pagination.nextCursor}
     >
-      <div className="mx-2 flex flex-col gap-8 sm:w-4/5 md:w-3/4 lg:w-2/3">
+      <div className="flex w-full flex-col gap-8 sm:w-4/5 md:w-3/4 lg:w-2/3">
         <CommentForm slug={slug} />
         <BlogCommentsList />
         <BlogLoadMoreComments />

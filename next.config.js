@@ -5,11 +5,12 @@ const nextConfig = {
     typedRoutes: true,
   },
   images: {
-    domains: ["picsum.photos"],
+    domains: ["picsum.photos", "img.clerk.com"],
   },
   eslint: {
     ignoreDuringBuilds: true,
   },
+  transpilePackages: ["./src/components/ui"],
 };
 
 module.exports = nextConfig;

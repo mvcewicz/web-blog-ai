@@ -39,7 +39,7 @@ export function ReplyForm() {
       animate={replyFormAnimation.animate}
       initial={replyFormAnimation.initial}
       exit={replyFormAnimation.exit}
-      className="my-2 flex gap-4"
+      className="flex gap-4 py-2"
     >
       <Input
         value={commentContent}

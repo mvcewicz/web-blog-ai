@@ -24,3 +24,4 @@ Users are able to vote and comment on blogs.
 | [shadcn-ui](https://ui.shadcn.com/)                 | UI Library           |
 | [Vercel](https://vercel.com/)                       | Hosting Platform     |
 | [OpenAI](https://openai.com/)                       | AI Model             |
+| [Prisma](https://www.prisma.io/)                    | ORM                  |

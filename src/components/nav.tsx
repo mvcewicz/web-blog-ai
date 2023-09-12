@@ -8,6 +8,9 @@ import {
   navigationMenuTriggerStyle,
 } from "@/src/components/ui/navigation-menu";
 
+import { SignIn, SignInButton, SignUp } from "@clerk/nextjs";
+import { Auth, AuthModal } from "@/src/components/auth/auth-modal";
+
 const primaryLinks = [
   {
     href: "/",
@@ -17,15 +20,15 @@ const primaryLinks = [
     href: "/blogs",
     label: "Blogs",
   },
-  {
-    href: "/about",
-    label: "About",
-  },
 ] as const;
+
+function UserNav() {
+  return <SignInButton />;
+}
 
 export function Nav() {
   return (
-    <NavigationMenu className="m-4 flex-initial">
+    <NavigationMenu className="max-w-initial m-4 flex flex max-w-full flex-initial justify-between">
       <NavigationMenuList>
         {primaryLinks.map((link) => (
           <NavigationMenuItem key={link.href}>
@@ -37,6 +40,9 @@ export function Nav() {
             </NavigationMenuLink>
           </NavigationMenuItem>
         ))}
+      </NavigationMenuList>
+      <NavigationMenuList>
+        <Auth />
       </NavigationMenuList>
     </NavigationMenu>
   );

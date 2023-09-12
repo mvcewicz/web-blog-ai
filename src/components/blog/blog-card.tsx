@@ -1,11 +1,5 @@
 import Image from "next/image";
-
-type Blog = {
-  slug: string;
-  title: string;
-  content: string;
-  image: string;
-};
+import { Blog } from "@/src/components/blog/blog.types";
 
 type BlogCardProps = {
   blog: Blog;

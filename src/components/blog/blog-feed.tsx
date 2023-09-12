@@ -1,20 +1,7 @@
 import AvatarAI from "@/src/components/blog/assets/ai-avatar.jpg";
-import { blogContentFixture } from "@/src/app/blogs/fixture";
 import Link from "next/link";
 import { fetchBlogFeed } from "@/src/components/blog/actions/fetch-blog-feed";
 import { Avatar } from "@/src/components/blog/avatar";
-
-type BlogSlugProps = {
-  slug: string;
-};
-
-function BlogSlug({ slug }: BlogSlugProps) {
-  return (
-    <Link href={`/blogs/${slug}`} className="text-xs text-gray-500 underline">
-      /{slug}
-    </Link>
-  );
-}
 
 function BlogAuthor() {
   return (
@@ -47,16 +34,28 @@ type BlogFeedProps = {
   slug: string;
 };
 
+type BlogMetadataProps = {
+  createdAt: string;
+};
+
+function BlogMetadata({ createdAt }: BlogMetadataProps) {
+  return (
+    <div className="flex flex-row gap-2 text-xs text-gray-500">
+      <span>{new Date(createdAt).toLocaleDateString("en-US")}</span>
+    </div>
+  );
+}
+
 export async function BlogFeed({ slug }: BlogFeedProps) {
   const blog = await fetchBlogFeed(slug);
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex flex-col">
+    <div className="flex w-full flex-col gap-4 sm:w-4/5 md:w-3/4 lg:w-2/3">
+      <div className="flex flex-col ">
         <BlogAuthor />
+        <BlogMetadata createdAt={blog.createdAt} />
         <BlogTitle title={blog.title} />
-        <BlogSlug slug={slug} />
       </div>
-      <BlogContent content={blogContentFixture} />
+      <BlogContent content={blog.content} />
     </div>
   );
 }

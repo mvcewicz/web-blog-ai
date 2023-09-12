@@ -92,7 +92,7 @@ function CommentToolbar() {
 
   return (
     <>
-      <div className="my-1 flex gap-6">
+      <div className="flex gap-6 py-1">
         {Boolean(comment?.repliesCount) && (
           <button
             type="button"

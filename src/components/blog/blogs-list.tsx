@@ -1,12 +1,6 @@
 import { BlogCard } from "@/src/components/blog/blog-card";
 import Link from "next/link";
-
-type Blog = {
-  slug: string;
-  title: string;
-  content: string;
-  image: string;
-};
+import { Blog } from "./blog.types";
 
 type BlogsListProps = {
   blogs: Blog[];
@@ -16,7 +10,7 @@ export function BlogsList({ blogs }: BlogsListProps) {
   return (
     <ul
       role="list"
-      className="my-6 flex flex-col items-center justify-center gap-6 sm:flex-row sm:flex-wrap"
+      className="flex flex-col items-center justify-center gap-6 py-6 sm:flex-row sm:flex-wrap"
     >
       {blogs.map((blog) => (
         <li key={blog.slug}>

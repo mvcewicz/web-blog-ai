@@ -2,7 +2,7 @@ import Avatar from "@/src/components/blog/assets/ai-avatar.jpg";
 
 export const fetchBlogCommentsResponse = {
   pagination: {
-    nextCursor: Math.random() > 0.5 ? "token" : undefined,
+    nextCursor: "token",
   },
   comments: [
     {
