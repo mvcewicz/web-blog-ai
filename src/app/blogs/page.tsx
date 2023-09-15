@@ -126,8 +126,10 @@ export default async function BlogsPage({ searchParams }: BlogsPageProps) {
   return (
     <div className="flex flex-col gap-4">
       <h1 className="text-xl">Blogs</h1>
-      <BlogsList blogs={blogs} />
-      <BlogsPagination page={pagination.page} total={pagination.total} />
+      <div className="flex flex-col gap-20">
+        <BlogsList blogs={blogs} />
+        <BlogsPagination page={pagination.page} total={pagination.total} />
+      </div>
     </div>
   );
 }

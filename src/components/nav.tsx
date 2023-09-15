@@ -8,8 +8,8 @@ import {
   navigationMenuTriggerStyle,
 } from "@/src/components/ui/navigation-menu";
 
-import { SignIn, SignInButton, SignUp } from "@clerk/nextjs";
-import { Auth, AuthModal } from "@/src/components/auth/auth-modal";
+import { Auth } from "@/src/components/auth/auth-modal";
+import { SignUpButton } from "@clerk/nextjs";
 
 const primaryLinks = [
   {
@@ -21,10 +21,6 @@ const primaryLinks = [
     label: "Blogs",
   },
 ] as const;
-
-function UserNav() {
-  return <SignInButton />;
-}
 
 export function Nav() {
   return (

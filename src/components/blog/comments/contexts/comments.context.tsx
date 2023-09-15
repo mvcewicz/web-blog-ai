@@ -36,7 +36,6 @@ export function CommentsContextProvider({
     nextCursor,
     slug,
   });
-
   return (
     <commentsContext.Provider value={context}>
       {children}

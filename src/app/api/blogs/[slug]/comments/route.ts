@@ -1,4 +1,5 @@
 import { prisma } from "@/src/clients/prisma";
+import { verifySession } from "@/src/helpers/server/session";
 import { NextURL } from "next/dist/server/web/next-url";
 
 import { NextRequest } from "next/server";
@@ -24,6 +25,7 @@ type Comment = {
   user: {
     id: string;
     name: string;
+    image: string;
   };
   _count: {
     replies: number;
@@ -37,6 +39,7 @@ type CommentDTO = {
   user: {
     id: string;
     name: string;
+    image: string;
   };
   replyCount: number;
 };
@@ -49,6 +52,7 @@ function commentToDTO(comment: Comment): CommentDTO {
     user: {
       id: comment.user.id,
       name: comment.user.name,
+      image: comment.user.image,
     },
     replyCount: comment._count.replies,
   };
@@ -67,12 +71,14 @@ export async function GET(
       blog: {
         slug: context.params.slug,
       },
+      commentId: null,
     },
     include: {
       user: {
         select: {
           id: true,
           name: true,
+          image: true,
         },
       },
       _count: {
@@ -102,17 +108,39 @@ type CreateBlogCommentRequestBody = {
   parentId?: string;
 };
 
-async function createBlogCommentRequestBody(request: NextRequest) {
-  const { slug, parentId, content } = await request.json();
+async function createBlogCommentRequestBody(
+  request: NextRequest,
+  context: GetBlogCommentsRequestContext,
+) {
+  const { parentId, content } = await request.json();
   return {
-    slug,
+    slug: context.params.slug,
     parentId,
     content,
   } as CreateBlogCommentRequestBody;
 }
 
-export async function POST(request: NextRequest) {
-  const body = await createBlogCommentRequestBody(request);
+export async function POST(
+  request: NextRequest,
+  context: GetBlogCommentsRequestContext,
+) {
+  const body = await createBlogCommentRequestBody(request, context);
+
+  const session = request.cookies.get("__session");
+
+  if (!session) {
+    return new Response("Unauthorized", {
+      status: 401,
+    });
+  }
+
+  const decodedSession = await verifySession(session.value);
+
+  if (!decodedSession) {
+    return new Response("Unauthorized", {
+      status: 401,
+    });
+  }
 
   const comment = await prisma.comment.create({
     data: {
@@ -124,14 +152,12 @@ export async function POST(request: NextRequest) {
       content: body.content,
       user: {
         connect: {
-          id: "1",
+          id: decodedSession.sub,
         },
       },
-      repliesTo: {
-        connect: {
-          id: body.parentId,
-        },
-      },
+      ...(body.parentId
+        ? { repliesTo: { connect: { id: body.parentId } } }
+        : {}),
     },
   });
 

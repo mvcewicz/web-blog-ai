@@ -1,4 +1,9 @@
-const BASE_URL = "http://localhost:3000";
+const getBaseUrl = () => {
+  if (process.env.NEXT_PUBLIC_VERCEL_URL) {
+    return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
+  }
+  return "http://localhost:3000";
+};
 
 type FetcherConfig = {
   url: string;
@@ -11,7 +16,7 @@ type FetcherConfig = {
 export const fetcher = async <T>(config: FetcherConfig): Promise<T> => {
   const url = new URL(
     config.url,
-    config.url.startsWith("/") ? BASE_URL : undefined,
+    config.url.startsWith("/") ? getBaseUrl() : undefined,
   );
 
   if (config.query) {
@@ -27,6 +32,7 @@ export const fetcher = async <T>(config: FetcherConfig): Promise<T> => {
       "Content-Type": "application/json",
       ...config.headers,
     },
+    cache: "force-cache",
   });
 
   if (!response.ok) {

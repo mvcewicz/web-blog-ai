@@ -2,6 +2,7 @@ import AvatarAI from "@/src/components/blog/assets/ai-avatar.jpg";
 import Link from "next/link";
 import { fetchBlogFeed } from "@/src/components/blog/actions/fetch-blog-feed";
 import { Avatar } from "@/src/components/blog/avatar";
+import { notFound, redirect } from "next/navigation";
 
 function BlogAuthor() {
   return (
@@ -47,9 +48,15 @@ function BlogMetadata({ createdAt }: BlogMetadataProps) {
 }
 
 export async function BlogFeed({ slug }: BlogFeedProps) {
-  const blog = await fetchBlogFeed(slug);
+  const blog = await fetchBlogFeed(slug).catch((error) => {
+    console.error(error);
+    return undefined;
+  });
+
+  if (!blog) return notFound();
+
   return (
-    <div className="flex w-full flex-col gap-4 sm:w-4/5 md:w-3/4 lg:w-2/3">
+    <div className="flex w-full flex-col gap-4 sm:w-4/5 md:w-3/4 lg:w-1/2">
       <div className="flex flex-col ">
         <BlogAuthor />
         <BlogMetadata createdAt={blog.createdAt} />

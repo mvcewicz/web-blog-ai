@@ -2,6 +2,8 @@ import { useCommentContext } from "@/src/components/blog/comments/contexts/comme
 import { Button } from "@/src/components/ui/button";
 import { AnimationProps, motion } from "framer-motion";
 import { Input } from "@/src/components/ui/input";
+import { useComments } from "@/src/components/blog/comments/hooks/use-comments";
+import { useCommentsContext } from "@/src/components/blog/comments/contexts/comments.context";
 
 const replyFormAnimation = {
   initial: {
@@ -27,14 +29,14 @@ const replyFormAnimation = {
 
 export function ReplyForm() {
   const {
-    context: { addComment, onCommentContentChange, commentContent },
+    context: { reply, onCommentContentChange, commentContent, isLoading },
   } = useCommentContext();
 
   return (
     <motion.form
       onSubmit={(e) => {
         e.preventDefault();
-        addComment(commentContent);
+        reply(commentContent);
       }}
       animate={replyFormAnimation.animate}
       initial={replyFormAnimation.initial}
@@ -45,8 +47,9 @@ export function ReplyForm() {
         value={commentContent}
         onChange={(event) => onCommentContentChange(event.currentTarget.value)}
         placeholder="Reply..."
+        disabled={isLoading}
       />
-      <Button>Add</Button>
+      <Button disabled={isLoading}>Add</Button>
     </motion.form>
   );
 }

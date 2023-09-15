@@ -5,7 +5,7 @@ const nextConfig = {
     typedRoutes: true,
   },
   images: {
-    domains: ["picsum.photos", "img.clerk.com"],
+    domains: ["picsum.photos", "img.clerk.com", "lh3.googleusercontent.com"],
   },
   eslint: {
     ignoreDuringBuilds: true,

@@ -36,8 +36,8 @@ function BlogCommentRowSkeleton() {
 
 export function BlogCommentsSkeleton() {
   return (
-    <div className="pointer-events-none mx-2 flex w-full select-none flex-col items-center justify-center gap-8 self-start blur">
-      <div className="flex w-full flex-col gap-4 self-center sm:w-4/5 md:w-3/4 lg:w-2/3">
+    <div className="pointer-events-none flex w-full select-none flex-col items-center justify-center gap-8 self-start px-2 blur">
+      <div className="flex w-full flex-col gap-4 self-center sm:w-4/5 md:w-3/4 lg:w-1/2">
         <form>
           <div className="flex flex-col gap-2">
             <Textarea
@@ -51,7 +51,7 @@ export function BlogCommentsSkeleton() {
             </Button>
           </div>
         </form>
-        <div className="flex w-full flex-col gap-8 px-2 sm:w-4/5 md:w-3/4 lg:w-2/3">
+        <div className="flex w-full flex-col gap-8 px-2 sm:w-4/5 md:w-3/4 lg:w-1/2">
           <BlogCommentRowSkeleton />
           <BlogCommentRowSkeleton />
           <BlogCommentRowSkeleton />

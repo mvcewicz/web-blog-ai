@@ -1,8 +1,8 @@
 export function BlogFeedSkeleton() {
   return (
-    <div className="pointer-events-none flex w-full select-none flex-col self-start self-center blur sm:w-4/5 md:w-3/4 lg:w-2/3">
+    <div className="pointer-events-none flex w-full animate-pulse select-none flex-col self-center sm:w-4/5 md:w-3/4 lg:w-1/2">
       <div className="flex flex-col items-center justify-center gap-8">
-        <div className="flex flex-col gap-4">
+        <div className="flex w-full flex-col gap-4">
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-2">
               <div className="h-24 w-24 rounded-full bg-black shadow" />

@@ -1,16 +1,29 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
+import { verifySession } from "@/src/helpers/server/session";
 
 export async function addCommentAction(formData: FormData) {
+  "use server";
   const slug = formData.get("slug");
   const comment = formData.get("comment");
 
-  formData.set("comment", "");
+  const session = cookies().get("__session")?.value;
 
-  revalidatePath(`/blogs/${slug}`);
+  if (!session) {
+    throw new Error("No session");
+  }
+
+  const decodedSession = await verifySession(session);
+
+  if (!decodedSession) {
+    throw new Error("Invalid session");
+  }
+
+  const userId = decodedSession.sub;
 
   return {
     slug,
+    userId,
   };
 }

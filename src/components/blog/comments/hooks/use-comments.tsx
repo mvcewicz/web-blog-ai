@@ -16,7 +16,7 @@ type UseCommentsQueryInput = {
 
 function useCommentsQuery(input: UseCommentsQueryInput) {
   return useInfiniteQuery({
-    queryKey: [input.slug, "comments"],
+    queryKey: ["comments"],
     queryFn: () => {
       return fetchBlogComments(input.slug);
     },
@@ -27,13 +27,14 @@ function useCommentsQuery(input: UseCommentsQueryInput) {
           pagination: {
             nextCursor: input.initialCursor,
           },
-          comments: input.initialComments || [],
+          items: input.initialComments || [],
         },
       ],
     },
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
+    refetchIntervalInBackground: false,
     getNextPageParam: (lastPage) => lastPage.pagination.nextCursor,
   });
 }
@@ -45,9 +46,10 @@ export function useComments(props: UseCommentsProps) {
     initialCursor: props.nextCursor,
   });
 
-  const comments = commentsQuery.data?.pages.flatMap((page) => page.comments);
+  const comments = commentsQuery.data?.pages.flatMap((page) => page.items);
 
   return {
+    slug: props.slug,
     commentsQuery,
     comments,
   };

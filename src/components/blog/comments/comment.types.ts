@@ -1,9 +1,9 @@
 export type Comment = {
   id: string;
   parentId?: string;
-  author: {
+  user: {
     name: string;
-    avatar: string;
+    image: string;
   };
   content: string;
   votes: {
@@ -12,5 +12,5 @@ export type Comment = {
   };
   createdAt: string;
   replies?: Comment[];
-  repliesCount?: number;
+  replyCount?: number;
 };

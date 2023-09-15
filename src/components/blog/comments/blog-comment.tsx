@@ -26,7 +26,7 @@ function CommentVotes() {
         className={buttonVariants({ variant: "outline" })}
       >
         <span className="text-xs font-bold text-gray-600">
-          +{comment.votes.up}
+          +{comment?.votes?.up}
         </span>
       </Button>
       <Button
@@ -34,7 +34,7 @@ function CommentVotes() {
         className={buttonVariants({ variant: "outline" })}
       >
         <span className="text-xs font-bold text-gray-600">
-          -{comment.votes.down}
+          -{comment?.votes?.down}
         </span>
       </Button>
     </div>
@@ -46,12 +46,8 @@ function CommentAuthor() {
   return (
     <div className="flex flex-col items-center justify-center gap-2">
       <CommentMetadata />
-      <Avatar
-        src={comment.author.avatar}
-        alt={comment.author.name}
-        variant="sm"
-      />
-      <span className="text-xs">{comment.author.name}</span>
+      <Avatar src={comment.user.image} alt={comment.user.name} variant="sm" />
+      <span className="text-xs">{comment.user.name}</span>
     </div>
   );
 }
@@ -84,31 +80,71 @@ function CommentReplyButton() {
   );
 }
 
-function CommentToolbar() {
+function useCommentReplies() {
   const {
-    comment,
-    context: { isRepliesVisible, toggleReplies, isReplying },
+    context: {
+      isRepliesVisible,
+      commentQuery,
+      toggleReplies,
+      isReplying,
+      comment,
+      reply,
+    },
   } = useCommentContext();
+
+  return {
+    reply,
+    isReplying,
+    comment,
+    isRepliesVisible,
+    toggleReplies,
+    commentQuery,
+  };
+}
+
+function CommentRepliesList() {
+  const { commentQuery } = useCommentReplies();
+
+  if (commentQuery.isLoading || commentQuery.isFetching) {
+    return (
+      <div className="relative flex gap-1 overflow-hidden p-5">
+        <div className="animate-cascade h-2 w-2 rounded-full bg-gray-800 delay-0"></div>
+        <div className="animate-cascade h-2 w-2 rounded-full bg-gray-800 delay-100"></div>
+        <div className="animate-cascade h-2 w-2 rounded-full bg-gray-800 delay-200"></div>
+        <div className="animate-cascade h-2 w-2 rounded-full bg-gray-800 delay-300"></div>
+      </div>
+    );
+  }
+
+  if (!commentQuery.data?.replies) return null;
+
+  return <CommentsList comments={commentQuery.data?.replies} />;
+}
+
+function CommentReplies() {
+  const { toggleReplies, commentQuery, reply, isRepliesVisible, isReplying } =
+    useCommentReplies();
+
+  const comment = commentQuery.data!;
 
   return (
     <>
       <div className="flex gap-6 py-1">
-        {Boolean(comment?.repliesCount) && (
+        {Boolean(comment?.replyCount) && (
           <button
             type="button"
             onClick={toggleReplies}
             className="mt-2 flex text-xs font-bold text-gray-600 underline"
           >
-            {isRepliesVisible ? "Hide" : "Show"} replies ({comment.repliesCount}
-            )
+            {isRepliesVisible ? "Hide" : "Show"} replies ({comment.replyCount})
           </button>
         )}
       </div>
       <AnimatePresence>{isReplying && <ReplyForm />}</AnimatePresence>
       <AnimatePresence>
-        {isRepliesVisible && comment.replies && (
+        {isRepliesVisible && (
           <div className="ml-4 mt-4 md:ml-8">
-            <CommentsList comments={comment.replies} />
+            <CommentRepliesList />
           </div>
         )}
       </AnimatePresence>
@@ -144,7 +180,7 @@ export function BlogComment({ comment }: BlogCommentProps) {
             <CommentReplyButton />
           </div>
         </div>
-        <CommentToolbar />
+        <CommentReplies />
       </div>
     </CommentContextProvider>
   );
