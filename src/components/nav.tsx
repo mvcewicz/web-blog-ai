@@ -25,7 +25,7 @@ const primaryLinks = [
 
 export function Nav() {
   return (
-    <NavigationMenu className="max-w-initial m-4 flex flex max-w-full flex-initial justify-between">
+    <NavigationMenu className="max-w-initial flex flex max-w-full flex-initial justify-between p-4">
       <NavigationMenuList>
         {primaryLinks.map((link) => (
           <NavigationMenuItem key={link.href}>

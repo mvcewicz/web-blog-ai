@@ -9,6 +9,7 @@ import { fetcher } from "@/src/helpers/fetcher";
 import { useParams } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
 import { FormEvent } from "react";
+import { CascadeLoading } from "@/src/components/cascade-loading";
 
 const useCommentForm = () => {
   const params = useParams();
@@ -69,14 +70,17 @@ export function CommentForm() {
 export function BlogLoadMoreComments() {
   const { commentsQuery } = useCommentsContext();
   if (!commentsQuery.hasNextPage) return null;
+
+  const isLoading = commentsQuery.isFetchingNextPage || commentsQuery.isLoading;
+
   return (
     <Button
       type={"button"}
-      disabled={!commentsQuery.hasNextPage || commentsQuery.isFetchingNextPage}
       onClick={() => commentsQuery.fetchNextPage()}
       className={cn(buttonVariants({ variant: "outline" }), "text-darken")}
+      disabled={isLoading}
     >
-      Load More
+      {CascadeLoading ? <CascadeLoading /> : "Load More"}
     </Button>
   );
 }

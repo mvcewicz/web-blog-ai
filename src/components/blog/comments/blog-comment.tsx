@@ -12,6 +12,7 @@ import { ReplyForm } from "@/src/components/blog/comments/reply-form";
 import { FaReply } from "react-icons/fa";
 import { cn } from "@/src/utils";
 import { Avatar } from "@/src/components/blog/avatar";
+import { CascadeLoading } from "@/src/components/cascade-loading";
 
 type BlogCommentProps = {
   comment: Comment;
@@ -106,14 +107,7 @@ function CommentRepliesList() {
   const { commentQuery } = useCommentReplies();
 
   if (commentQuery.isLoading || commentQuery.isFetching) {
-    return (
-      <div className="relative flex gap-1 overflow-hidden p-5">
-        <div className="h-2 w-2 animate-cascade rounded-full bg-gray-800 delay-0"></div>
-        <div className="h-2 w-2 animate-cascade rounded-full bg-gray-800 delay-100"></div>
-        <div className="h-2 w-2 animate-cascade rounded-full bg-gray-800 delay-200"></div>
-        <div className="h-2 w-2 animate-cascade rounded-full bg-gray-800 delay-300"></div>
-      </div>
-    );
+    return <CascadeLoading />;
   }
 
   if (!commentQuery.data?.replies) return null;
