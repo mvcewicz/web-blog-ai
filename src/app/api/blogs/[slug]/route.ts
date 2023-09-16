@@ -1,8 +1,6 @@
 import { prisma } from "@/src/clients/prisma";
 import { NextRequest } from "next/server";
 
-// export const runtime = "edge";
-
 type BlogRequestContext = {
   params: {
     slug: string;

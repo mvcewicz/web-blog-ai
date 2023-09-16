@@ -8,6 +8,7 @@ import {
 import { Button } from "@/src/components/ui/button";
 import { SignIn, SignInButton, UserButton, useSession } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
+import { navigationMenuTriggerStyle } from "@/src/components/ui/navigation-menu";
 
 export function Auth() {
   const session = useSession();
@@ -37,7 +38,7 @@ export function AuthModalButton() {
       afterSignInUrl={path}
       afterSignUpUrl={path}
     >
-      <Button>Sign In</Button>
+      <Button variant="outline">Sign In</Button>
     </SignInButton>
   );
 }

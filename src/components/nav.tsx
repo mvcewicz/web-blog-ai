@@ -10,6 +10,7 @@ import {
 
 import { Auth } from "@/src/components/auth/auth-modal";
 import { SignUpButton } from "@clerk/nextjs";
+import { NavigationMenuTrigger } from "@radix-ui/react-navigation-menu";
 
 const primaryLinks = [
   {
@@ -38,7 +39,11 @@ export function Nav() {
         ))}
       </NavigationMenuList>
       <NavigationMenuList>
-        <Auth />
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>
+            <Auth />
+          </NavigationMenuTrigger>
+        </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
   );

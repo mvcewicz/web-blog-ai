@@ -1,16 +1,6 @@
 import { prisma } from "@/src/clients/prisma";
 import { verifySession } from "@/src/helpers/server/session";
-import { NextURL } from "next/dist/server/web/next-url";
-
 import { NextRequest } from "next/server";
-
-// export const runtime = "edge";
-
-function getBlogCommentsRequestParams(url: NextURL) {
-  return {
-    slug: url.searchParams.get("slug"),
-  };
-}
 
 type GetBlogCommentsRequestContext = {
   params: {
@@ -58,7 +48,12 @@ function commentToDTO(comment: Comment): CommentDTO {
   };
 }
 
+const COMMENTS_PER_PAGE = 3;
+
 function getCommentsCursor(comments: CommentDTO[]) {
+  if (comments.length !== COMMENTS_PER_PAGE) {
+    return;
+  }
   return comments.at(-1)?.id;
 }
 
@@ -66,6 +61,8 @@ export async function GET(
   request: NextRequest,
   context: GetBlogCommentsRequestContext,
 ) {
+  const cursor = request.nextUrl?.searchParams.get("cursor");
+
   const comments = await prisma.comment.findMany({
     where: {
       blog: {
@@ -73,6 +70,8 @@ export async function GET(
       },
       commentId: null,
     },
+    ...(cursor ? { cursor: { id: cursor }, skip: 1 } : {}),
+    take: COMMENTS_PER_PAGE,
     include: {
       user: {
         select: {

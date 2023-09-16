@@ -1,6 +1,5 @@
 import { prisma } from "@/src/clients/prisma";
 import { NextRequest } from "next/server";
-import { Comment } from "@/src/components/blog/comments/comment.types";
 import { verifySession } from "@/src/helpers/server/session";
 
 type GetCommentsRequestContext = {

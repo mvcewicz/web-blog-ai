@@ -19,13 +19,17 @@ const socialsLinks = [
 function SocialLinks() {
   return (
     <div className="flex flex-col">
-      <ul role="list" className="flex flex-col gap-4  sm:gap-2">
+      <ul role="list" className="text-darken flex flex-col gap-4 sm:gap-2">
         {socialsLinks.map((link) => (
-          <li title={link.name} className="flex gap-2" key={link.name}>
+          <li
+            title={link.name}
+            className="text-darken flex gap-2"
+            key={link.name}
+          >
             <link.icon />
             {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
             {/* @ts-ignore */}
-            <Link className="text-xs text-gray-500" href={link.url}>
+            <Link className="text-xs" href={link.url}>
               {link.label}
             </Link>
           </li>

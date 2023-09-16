@@ -7,7 +7,7 @@ function BlogCommentRowSkeleton() {
       <div className="flex gap-4">
         <div className="flex flex-col items-center justify-center gap-2">
           <div className="flex flex-col gap-2">
-            <span className="flex flex-col items-center gap-0.5 text-xs text-gray-500">
+            <span className="text-darken text-darken flex flex-col items-center gap-0.5">
               <span className="block">10/10/2021</span>
             </span>
           </div>
@@ -23,10 +23,10 @@ function BlogCommentRowSkeleton() {
       <div className="flex items-center gap-2">
         <div className="flex gap-2">
           <button className="inline-flex h-10 items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
-            <span className="text-xs font-bold text-gray-600">+69</span>
+            <span className="text-darken text-xs font-bold">+69</span>
           </button>
           <button className="inline-flex h-10 items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
-            <span className="text-xs font-bold text-gray-600">0</span>
+            <span className="text-darken text-xs font-bold">0</span>
           </button>
         </div>
       </div>

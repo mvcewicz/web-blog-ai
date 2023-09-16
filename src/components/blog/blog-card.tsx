@@ -18,7 +18,7 @@ export function BlogCard({ blog }: BlogCardProps) {
       />
       <div className="flex flex-col">
         <p className="font-bold">{blog.title}</p>
-        <span className="text-xs text-gray-500 underline">/{blog.slug}</span>
+        <span className="text-darken text-xs underline">/{blog.slug}</span>
       </div>
       <p className="text-sm">{blog.content}</p>
     </div>

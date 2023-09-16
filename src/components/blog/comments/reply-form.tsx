@@ -2,8 +2,7 @@ import { useCommentContext } from "@/src/components/blog/comments/contexts/comme
 import { Button } from "@/src/components/ui/button";
 import { AnimationProps, motion } from "framer-motion";
 import { Input } from "@/src/components/ui/input";
-import { useComments } from "@/src/components/blog/comments/hooks/use-comments";
-import { useCommentsContext } from "@/src/components/blog/comments/contexts/comments.context";
+import { useUser } from "@clerk/nextjs";
 
 const replyFormAnimation = {
   initial: {
@@ -27,10 +26,22 @@ const replyFormAnimation = {
   },
 } satisfies AnimationProps;
 
+const useReplyForm = () => {
+  const { context } = useCommentContext();
+
+  const user = useUser();
+
+  return {
+    user,
+    context,
+  };
+};
+
 export function ReplyForm() {
   const {
     context: { reply, onCommentContentChange, commentContent, isLoading },
-  } = useCommentContext();
+    user,
+  } = useReplyForm();
 
   return (
     <motion.form
@@ -46,10 +57,12 @@ export function ReplyForm() {
       <Input
         value={commentContent}
         onChange={(event) => onCommentContentChange(event.currentTarget.value)}
-        placeholder="Reply..."
-        disabled={isLoading}
+        placeholder={
+          user?.isSignedIn ? "Reply..." : "You must be signed in to reply"
+        }
+        disabled={isLoading || !user?.isSignedIn}
       />
-      <Button disabled={isLoading}>Add</Button>
+      <Button disabled={isLoading || !user?.isSignedIn}>Add</Button>
     </motion.form>
   );
 }

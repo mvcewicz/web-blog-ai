@@ -5,63 +5,6 @@ import { useMemo } from "react";
 import { BLOGS_PER_PAGE } from "@/src/components/blog/constants/blogs.api";
 import { fetchBlogs } from "@/src/components/blog/actions/fetch-blogs";
 
-type FetchBlogsParams = {
-  page: number;
-};
-
-// async function fetchBlogs(params: FetchBlogsParams) {
-//   return {
-//     blogs: [
-//       {
-//         slug: "blog-1",
-//         title: "Blog 1",
-//         content: "Blog 1 Content",
-//         image: "https://picsum.photos/200/300",
-//       },
-//       {
-//         slug: "blog-2",
-//         title: "Blog 2",
-//         content: "Blog 2 Content",
-//         image: "https://picsum.photos/200/300",
-//       },
-//       {
-//         slug: "blog-3",
-//         title: "Blog 3",
-//         content: "Blog 3 Content",
-//         image: "https://picsum.photos/200/300",
-//       },
-//       {
-//         slug: "blog-4",
-//         title: "Blog 4",
-//         content: "Blog 4 Content",
-//         image: "https://picsum.photos/200/300",
-//       },
-//       {
-//         slug: "blog-5",
-//         title: "Blog 5",
-//         content: "Blog 5 Content",
-//         image: "https://picsum.photos/200/300",
-//       },
-//       {
-//         slug: "blog-6",
-//         title: "Blog 6",
-//         content: "Blog 6 Content",
-//         image: "https://picsum.photos/200/300",
-//       },
-//       {
-//         slug: "blog-7",
-//         title: "Blog 7",
-//         content: "Blog 7 Content",
-//         image: "https://picsum.photos/200/300",
-//       },
-//     ],
-//     pagination: {
-//       page: params.page,
-//       total: 7,
-//     },
-//   };
-// }
-
 type BlogsPageProps = {
   searchParams: {
     page?: string;

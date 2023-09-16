@@ -57,5 +57,5 @@ export async function POST(request: NextRequest) {
     },
   });
 
-  return new Response(JSON.stringify(user));
+  return new Response(JSON.stringify({ item: user }));
 }

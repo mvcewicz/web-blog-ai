@@ -25,7 +25,7 @@ function CommentVotes() {
         aria-label="Up"
         className={buttonVariants({ variant: "outline" })}
       >
-        <span className="text-xs font-bold text-gray-600">
+        <span className="text-darken text-xs font-bold">
           +{comment?.votes?.up}
         </span>
       </Button>
@@ -33,7 +33,7 @@ function CommentVotes() {
         aria-label="Down"
         className={buttonVariants({ variant: "outline" })}
       >
-        <span className="text-xs font-bold text-gray-600">
+        <span className="text-darken text-xs font-bold">
           -{comment?.votes?.down}
         </span>
       </Button>
@@ -47,7 +47,7 @@ function CommentAuthor() {
     <div className="flex flex-col items-center justify-center gap-2">
       <CommentMetadata />
       <Avatar src={comment.user.image} alt={comment.user.name} variant="sm" />
-      <span className="text-xs">{comment.user.name}</span>
+      <span className="text-center text-xs">{comment.user.name}</span>
     </div>
   );
 }
@@ -56,7 +56,7 @@ function CommentContent() {
   const { comment } = useCommentContext();
   return (
     <div className="flex flex-1 items-center justify-center">
-      <p className="flex-1 break-words rounded-xl bg-gray-100 px-4 py-2 text-xs font-bold">
+      <p className="flex-1 break-words rounded-xl bg-secondary px-4 py-2.5 text-xs font-bold">
         {comment.content}
       </p>
     </div>
@@ -72,7 +72,7 @@ function CommentReplyButton() {
     <Button
       aria-label="Reply"
       type="button"
-      className={cn(buttonVariants({ variant: "outline" }), "text-gray-600")}
+      className={cn(buttonVariants({ variant: "outline" }), "text-darken")}
       onClick={toggleReply}
     >
       <FaReply />
@@ -108,10 +108,10 @@ function CommentRepliesList() {
   if (commentQuery.isLoading || commentQuery.isFetching) {
     return (
       <div className="relative flex gap-1 overflow-hidden p-5">
-        <div className="animate-cascade h-2 w-2 rounded-full bg-gray-800 delay-0"></div>
-        <div className="animate-cascade h-2 w-2 rounded-full bg-gray-800 delay-100"></div>
-        <div className="animate-cascade h-2 w-2 rounded-full bg-gray-800 delay-200"></div>
-        <div className="animate-cascade h-2 w-2 rounded-full bg-gray-800 delay-300"></div>
+        <div className="h-2 w-2 animate-cascade rounded-full bg-gray-800 delay-0"></div>
+        <div className="h-2 w-2 animate-cascade rounded-full bg-gray-800 delay-100"></div>
+        <div className="h-2 w-2 animate-cascade rounded-full bg-gray-800 delay-200"></div>
+        <div className="h-2 w-2 animate-cascade rounded-full bg-gray-800 delay-300"></div>
       </div>
     );
   }
@@ -134,7 +134,7 @@ function CommentReplies() {
           <button
             type="button"
             onClick={toggleReplies}
-            className="mt-2 flex text-xs font-bold text-gray-600 underline"
+            className="text-darken mt-2 flex text-xs font-bold underline"
           >
             {isRepliesVisible ? "Hide" : "Show"} replies ({comment.replyCount})
           </button>
@@ -157,7 +157,7 @@ function CommentMetadata() {
 
   return (
     <div className="flex flex-col gap-2">
-      <span className="flex flex-col items-center gap-0.5 text-xs text-gray-500">
+      <span className="text-darken flex flex-col items-center gap-0.5 text-xs">
         <span className="block">
           {new Date(comment.createdAt).toLocaleDateString("en-US")}
         </span>
@@ -171,7 +171,7 @@ export function BlogComment({ comment }: BlogCommentProps) {
     <CommentContextProvider comment={comment}>
       <div className="relative flex flex-1 flex-col">
         <div className="flex flex-col gap-2">
-          <div className="flex gap-4">
+          <div className="flex gap-1">
             <CommentAuthor />
             <CommentContent />
           </div>

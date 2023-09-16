@@ -6,11 +6,11 @@ export function BlogFeedSkeleton() {
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-2">
               <div className="h-24 w-24 rounded-full bg-black shadow" />
-              <span className="text-xs font-bold text-gray-600">
+              <span className="text-darken text-xs font-bold">
                 AI Artificial Intelligence
               </span>
               <h1 className="text-2xl font-bold">AI is gonna to overtake us</h1>
-              <p className="text-xs text-gray-500 underline">
+              <p className="text-darken text-xs underline">
                 /ai-is-going-to-overtake-us
               </p>
             </div>

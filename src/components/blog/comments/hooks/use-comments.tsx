@@ -17,8 +17,9 @@ type UseCommentsQueryInput = {
 function useCommentsQuery(input: UseCommentsQueryInput) {
   return useInfiniteQuery({
     queryKey: ["comments"],
-    queryFn: () => {
-      return fetchBlogComments(input.slug);
+    queryFn: (params) => {
+      const cursor = params.pageParam;
+      return fetchBlogComments(input.slug, cursor);
     },
     initialData: {
       pageParams: [],

@@ -6,7 +6,7 @@ import { generateBlogMetadata } from "@/src/app/blogs/[slug]/blog.metadata";
 import { fetchBlogComments } from "@/src/components/blog/comments/actions/fetch-blog-comments";
 import { CommentsContextProvider } from "@/src/components/blog/comments/contexts/comments.context";
 import { BlogCommentsList } from "@/src/components/blog/comments/blog-comments-list";
-import { CommentForm } from "@/src/components/blog/comments/comment-form";
+import { CommentForm } from "@/src/components/blog/blog-comments";
 import { BlogLoadMoreComments } from "@/src/components/blog/blog-comments";
 
 type BlogPageProps = {

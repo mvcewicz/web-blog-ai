@@ -11,10 +11,14 @@ type FetchBlogCommentsResponse = {
 
 export async function fetchBlogComments(
   slug: string,
+  cursor?: string,
 ): Promise<FetchBlogCommentsResponse> {
   // TODO: Fetch blog comments from API
   const data = await fetcher<FetchBlogCommentsResponse>({
     url: `/api/blogs/${slug}/comments`,
+    query: {
+      cursor,
+    },
     method: "GET",
   });
 

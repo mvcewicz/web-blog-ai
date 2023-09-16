@@ -24,10 +24,11 @@ export function Avatar({ src, variant, alt }: AvatarProps) {
   return (
     <div className={avatarVariants({ variant })}>
       <Image
+        priority
         src={src}
+        height={20}
+        width={20}
         alt={alt}
-        layout="fill"
-        objectFit={"cover"}
         className={cn(avatarBorderClassName, "h-full w-full")}
       />
     </div>

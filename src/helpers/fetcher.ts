@@ -9,7 +9,7 @@ type FetcherConfig = {
   url: string;
   method?: "GET" | "POST" | "PUT" | "DELETE";
   body?: unknown;
-  query?: Record<string, string>;
+  query?: Record<string, unknown>;
   headers?: Record<string, string>;
 };
 
@@ -21,7 +21,9 @@ export const fetcher = async <T>(config: FetcherConfig): Promise<T> => {
 
   if (config.query) {
     Object.entries(config.query).forEach(([key, value]) => {
-      url.searchParams.set(key, value);
+      if (value !== undefined) {
+        url.searchParams.set(key, String(value));
+      }
     });
   }
 
@@ -32,10 +34,10 @@ export const fetcher = async <T>(config: FetcherConfig): Promise<T> => {
       "Content-Type": "application/json",
       ...config.headers,
     },
-    cache: "force-cache",
   });
 
   if (!response.ok) {
+    console.info(config);
     throw new Error(response.statusText);
   }
 
