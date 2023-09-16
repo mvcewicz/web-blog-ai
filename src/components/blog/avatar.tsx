@@ -3,7 +3,7 @@ import Image from "next/image";
 import { cn } from "@/src/utils";
 
 const avatarBorderClassName =
-  "rounded-full border-rose-50 border-transparent border-t-rose-300 border-l-rose-300 border-4";
+  "rounded-full border-transparent border-t-colored border-l-colored border-4";
 
 type AvatarProps = {
   src: string;
