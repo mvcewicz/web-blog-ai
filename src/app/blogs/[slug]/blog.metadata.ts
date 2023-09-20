@@ -1,6 +1,6 @@
 import { BlogPageProps } from "@/src/app/blogs/[slug]/blog.types";
-import { fetchBlogFeed } from "@/src/components/blog/actions/fetch-blog-feed";
-import AvatarAI from "@/src/components/blog/assets/ai-avatar.jpg";
+import { fetchBlogFeed } from "@/src/lib/blog/api/fetch-blog-feed";
+import AvatarAI from "@/src/lib/blog/assets/ai-avatar.jpg";
 import { Metadata } from "next";
 
 export async function generateBlogMetadata({ params }: BlogPageProps) {

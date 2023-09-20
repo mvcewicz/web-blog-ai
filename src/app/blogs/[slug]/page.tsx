@@ -1,13 +1,13 @@
 import { Suspense } from "react";
-import { BlogFeed } from "@/src/components/blog/blog-feed";
-import { BlogFeedSkeleton } from "@/src/components/blog/blog-skeleton";
-import { BlogCommentsSkeleton } from "@/src/components/blog/comments/blog-comments-skeleton";
+import { BlogFeed } from "@/src/lib/blog/blog-feed";
+import { BlogFeedSkeleton } from "@/src/lib/blog/blog-skeleton";
+import { BlogCommentsSkeleton } from "@/src/lib/blog/comments/blog-comments-skeleton";
 import { generateBlogMetadata } from "@/src/app/blogs/[slug]/blog.metadata";
-import { fetchBlogComments } from "@/src/components/blog/comments/actions/fetch-blog-comments";
-import { CommentsContextProvider } from "@/src/components/blog/comments/contexts/comments.context";
-import { BlogCommentsList } from "@/src/components/blog/comments/blog-comments-list";
-import { CommentForm } from "@/src/components/blog/blog-comments";
-import { BlogLoadMoreComments } from "@/src/components/blog/blog-comments";
+import { fetchBlogComments } from "@/src/lib/blog/comments/api/fetch-blog-comments";
+import { CommentsContextProvider } from "@/src/lib/blog/comments/contexts/comments.context";
+import { BlogCommentsList } from "@/src/lib/blog/comments/blog-comments-list";
+import { CommentForm } from "@/src/lib/blog/blog-comments";
+import { BlogLoadMoreComments } from "@/src/lib/blog/blog-comments";
 
 type BlogPageProps = {
   params: {

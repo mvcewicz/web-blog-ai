@@ -1,4 +1,4 @@
-import { prisma } from "@/src/clients/prisma";
+import { prismaClient } from "@/src/helpers/clients/prisma-client";
 import { NextRequest } from "next/server";
 
 type GetBlogCommentRepliesRequestContext = {
@@ -12,7 +12,7 @@ export async function GET(
   request: NextRequest,
   context: GetBlogCommentRepliesRequestContext,
 ) {
-  const replies = await prisma.comment
+  const replies = await prismaClient.comment
     .findUnique({
       where: {
         id: context.params.id,

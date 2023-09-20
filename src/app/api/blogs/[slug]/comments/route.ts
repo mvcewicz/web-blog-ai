@@ -1,4 +1,4 @@
-import { prisma } from "@/src/clients/prisma";
+import { prismaClient } from "@/src/helpers/clients/prisma-client";
 import { verifySession } from "@/src/helpers/server/session";
 import { NextRequest } from "next/server";
 
@@ -63,7 +63,7 @@ export async function GET(
 ) {
   const cursor = request.nextUrl?.searchParams.get("cursor");
 
-  const comments = await prisma.comment.findMany({
+  const comments = await prismaClient.comment.findMany({
     where: {
       blog: {
         slug: context.params.slug,
@@ -141,7 +141,7 @@ export async function POST(
     });
   }
 
-  const comment = await prisma.comment.create({
+  const comment = await prismaClient.comment.create({
     data: {
       blog: {
         connect: {

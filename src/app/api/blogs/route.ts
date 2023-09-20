@@ -1,7 +1,7 @@
-import { prisma } from "@/src/clients/prisma";
+import { prismaClient } from "@/src/helpers/clients/prisma-client";
 import { NextURL } from "next/dist/server/web/next-url";
 import { NextRequest } from "next/server";
-import { BLOGS_PER_PAGE } from "@/src/components/blog/constants/blogs.api";
+import { BLOGS_PER_PAGE } from "@/src/lib/blog/api/blogs.api";
 
 // export const runtime = "edge";
 
@@ -15,11 +15,15 @@ export async function GET(request: NextRequest) {
   const params = getBlogsRequestParams(request.nextUrl);
 
   const [blogs, totalBlogs] = await Promise.all([
-    prisma.blog.findMany({
+    prismaClient.blog.findMany({
       skip: (params.page - 1) * BLOGS_PER_PAGE,
       take: BLOGS_PER_PAGE,
+      // TODO: add dynamic sorting
+      orderBy: {
+        createdAt: "desc",
+      },
     }),
-    prisma.blog.count(),
+    prismaClient.blog.count(),
   ]);
 
   const response = {

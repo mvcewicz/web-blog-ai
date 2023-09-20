@@ -1,4 +1,4 @@
-import { prisma } from "@/src/clients/prisma";
+import { prismaClient } from "@/src/helpers/clients/prisma-client";
 import { NextRequest } from "next/server";
 
 type BlogRequestContext = {
@@ -12,7 +12,7 @@ export async function GET(request: NextRequest, context: BlogRequestContext) {
     return new Response("No slug provided");
   }
 
-  const blog = await prisma.blog.findUnique({
+  const blog = await prismaClient.blog.findUnique({
     where: {
       slug: context.params.slug,
     },

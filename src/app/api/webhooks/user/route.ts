@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { prisma } from "@/src/clients/prisma";
+import { prismaClient } from "@/src/helpers/clients/prisma-client";
 
 type UserCreatedBody = {
   data: {
@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
     throw new Error("No email found");
   }
 
-  const user = await prisma.user.upsert({
+  const user = await prismaClient.user.upsert({
     where: {
       id: userBody.data.id,
     },

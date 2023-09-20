@@ -1,4 +1,4 @@
-import { prisma } from "@/src/clients/prisma";
+import { prismaClient } from "@/src/helpers/clients/prisma-client";
 import { NextRequest } from "next/server";
 import { verifySession } from "@/src/helpers/server/session";
 
@@ -112,7 +112,7 @@ export async function POST(
     });
   }
 
-  const comment = await prisma.comment.create({
+  const comment = await prismaClient.comment.create({
     data: {
       content,
       blog: {
@@ -149,7 +149,7 @@ export async function GET(
     return new Response("No id provided");
   }
 
-  const comment = await prisma.comment.findUnique({
+  const comment = await prismaClient.comment.findUnique({
     where: {
       id,
       blog: {

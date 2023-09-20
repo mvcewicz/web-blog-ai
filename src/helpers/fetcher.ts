@@ -1,19 +1,24 @@
 const getBaseUrl = () => {
+  if (process.env.NEXT_PUBLIC_VERCEL_ENV === "production") {
+    return "https://web-blog-ai.vercel.app";
+  }
   if (process.env.NEXT_PUBLIC_VERCEL_URL) {
     return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
   }
   return "http://localhost:3000";
 };
 
-type FetcherConfig = {
+type FetcherConfig = Omit<RequestInit, "body" | "method"> & {
   url: string;
-  method?: "GET" | "POST" | "PUT" | "DELETE";
+  method?: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
   body?: unknown;
   query?: Record<string, unknown>;
   headers?: Record<string, string>;
 };
 
-export const fetcher = async <T>(config: FetcherConfig): Promise<T> => {
+export const fetcher = async <TResponse>(
+  config: FetcherConfig,
+): Promise<TResponse> => {
   const url = new URL(
     config.url,
     config.url.startsWith("/") ? getBaseUrl() : undefined,
@@ -28,6 +33,7 @@ export const fetcher = async <T>(config: FetcherConfig): Promise<T> => {
   }
 
   const response = await fetch(url, {
+    ...config,
     method: config.method ?? "GET",
     body: config.body ? JSON.stringify(config.body) : undefined,
     headers: {
@@ -41,5 +47,5 @@ export const fetcher = async <T>(config: FetcherConfig): Promise<T> => {
     throw new Error(response.statusText);
   }
 
-  return (await response.json()) as T;
+  return (await response.json()) as TResponse;
 };

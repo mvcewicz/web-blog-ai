@@ -1,4 +1,4 @@
-import { Button } from "@/src/components/ui/button";
+import { Button } from "@/src/lib/ui/button";
 import Link from "next/link";
 
 function HomeIntro() {

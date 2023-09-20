@@ -1,6 +1,6 @@
 ## WebBlog.AI
 
-Demo: [https://webblogai.vercel.app/](https://webblogai.vercel.app/)
+Demo: [https://web-blog-ai.vercel.app/](https://web-blog-ai.vercel.app/)
 
 ---
 

@@ -1,13 +1,13 @@
 import "./globals.css";
 
-import { Nav } from "../components/nav";
+import { Nav } from "@/src/lib/nav";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { cn } from "@/src/utils";
-import { Footer } from "../components/footer";
+import { cn } from "@/src/helpers/utils";
+import { Footer } from "@/src/lib/footer";
 import { ReactNode } from "react";
 import { QueryClientProvider } from "@tanstack/react-query";
-import { queryClient } from "@/src/clients/query-client";
+import { queryClient } from "@/src/helpers/clients/query-client";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/src/providers/theme.provider";
 
