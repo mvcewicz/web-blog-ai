@@ -3,7 +3,7 @@
 import { Textarea } from "@/src/lib/ui/textarea";
 import { Button, buttonVariants } from "@/src/lib/ui/button";
 import { cn } from "@/src/helpers/utils";
-import { useCommentsContext } from "@/src/lib/blog/comments/contexts/comments.context";
+import { useCommentsContext } from "@/src/lib/features/blog/comments/contexts/comments.context";
 import { useMutation } from "@tanstack/react-query";
 import { fetcher } from "@/src/helpers/fetcher";
 import { useParams } from "next/navigation";
@@ -35,7 +35,7 @@ const useCommentForm = () => {
     const content = formData.get("comment") as string;
     addCommentMutation.mutate(content, {
       onSuccess: () => {
-        console.log((event.target as HTMLFormElement).reset());
+        (event.target as HTMLFormElement).reset();
       },
       onSettled: async () => {
         await queryClient.invalidateQueries(["comments"]);

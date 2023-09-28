@@ -1,4 +1,4 @@
-import { Comment } from "@/src/lib/blog/comments/blog-comment.types";
+import { Comment } from "@/src/lib/features/blog/comments/blog-comment.types";
 import { fetcher } from "@/src/helpers/fetcher";
 
 type FetchBlogCommentsResponse = {
@@ -20,7 +20,7 @@ export async function fetchBlogComments(
     },
     method: "GET",
     next: {
-      revalidate: 10,
+      revalidate: 30,
     },
   });
 

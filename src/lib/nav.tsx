@@ -9,7 +9,7 @@ import {
 } from "@/src/lib/ui/navigation-menu";
 
 import { NavigationMenuTrigger } from "@radix-ui/react-navigation-menu";
-import { AuthButton } from "@/src/lib/auth/auth-modal";
+import { AuthButton } from "@/src/lib/features/auth/auth-modal";
 
 const primaryLinks = [
   {

@@ -1,6 +1,6 @@
-import * as BlogCard from "@/src/lib/blog/headless/blog-card.headless";
+import * as BlogCard from "@/src/lib/features/blog/headless/blog-card.headless";
 import Link from "next/link";
-import { Blog } from "./blog.types";
+import { Blog } from "@/src/lib/features/blog/blog.types";
 
 type BlogsListProps = {
   blogs: Blog[];
@@ -24,8 +24,10 @@ export function BlogsList({ blogs }: BlogsListProps) {
               />
               <BlogCard.Body>
                 <BlogCard.Title>{blog.title}</BlogCard.Title>
-                <BlogCard.Slug>{blog.slug}</BlogCard.Slug>
-                <BlogCard.Content>{blog.content}</BlogCard.Content>
+                <BlogCard.Slug>/{blog.slug}</BlogCard.Slug>
+                <BlogCard.Content>
+                  {blog.content.slice(0, 200)}
+                </BlogCard.Content>
               </BlogCard.Body>
             </BlogCard.Root>
           </Link>

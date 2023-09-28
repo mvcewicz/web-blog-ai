@@ -1,8 +1,8 @@
-import { Comment } from "@/src/lib/blog/comments/blog-comment.types";
+import { Comment } from "@/src/lib/features/blog/comments/blog-comment.types";
 import { useEffect, useState } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { fetcher } from "@/src/helpers/fetcher";
-import { useCommentsContext } from "@/src/lib/blog/comments/contexts/comments.context";
+import { useCommentsContext } from "@/src/lib/features/blog/comments/contexts/comments.context";
 import { queryClient } from "@/src/helpers/clients/query-client";
 import { useParams } from "next/navigation";
 

@@ -1,17 +1,17 @@
 "use client";
 
 import { Button, buttonVariants } from "@/src/lib/ui/button";
-import { Comment } from "@/src/lib/blog/comments/blog-comment.types";
+import { Comment } from "@/src/lib/features/blog/comments/blog-comment.types";
 import {
   CommentContextProvider,
   useCommentContext,
-} from "@/src/lib/blog/comments/contexts/comment.context";
-import { CommentsList } from "@/src/lib/blog/comments/blog-comments-list";
+} from "@/src/lib/features/blog/comments/contexts/comment.context";
+import { CommentsList } from "@/src/lib/features/blog/comments/blog-comments-list";
 import { AnimatePresence } from "framer-motion";
-import { ReplyForm } from "@/src/lib/blog/comments/reply-form";
+import { ReplyForm } from "@/src/lib/features/blog/comments/reply-form";
 import { FaReply } from "react-icons/fa";
 import { cn } from "@/src/helpers/utils";
-import { Avatar } from "@/src/lib/blog/avatar";
+import { Avatar } from "@/src/lib/features/blog/avatar";
 import { CascadeLoading } from "@/src/lib/cascade-loading";
 
 type BlogCommentProps = {

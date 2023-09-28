@@ -25,3 +25,7 @@ Users are able to vote and comment on blogs.
 | [Vercel](https://vercel.com/)                       | Hosting Platform     |
 | [OpenAI](https://openai.com/)                       | AI Model             |
 | [Prisma](https://www.prisma.io/)                    | ORM                  |
+
+important: setup GITHUB_PERSONAL_TOKEN in `.npmrc`
+
+You can do that by creating a personal access token in your github account and then adding it to `.npmrc` file

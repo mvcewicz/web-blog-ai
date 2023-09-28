@@ -1,14 +1,15 @@
 import { fetcher } from "@/src/helpers/fetcher";
-import { Blog } from "../blog.types";
+import { Blog } from "@/src/lib/features/blog/blog.types";
+import { cache } from "react";
 
 type FetchBlogFeedResponse = {
   item: Blog;
 };
 
-export async function fetchBlogFeed(slug: string) {
-  // TODO: Fetch blog feed from API
+export const fetchBlogFeed = cache(async (slug: string) => {
   const response = await fetcher<FetchBlogFeedResponse>({
     url: `/api/blogs/${slug}`,
+    cache: "force-cache",
   });
   return response.item;
-}
+});

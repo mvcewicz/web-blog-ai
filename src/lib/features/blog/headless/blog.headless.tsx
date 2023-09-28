@@ -1,6 +1,6 @@
 import { cn } from "@/src/helpers/utils";
 import ReactMarkdown from "react-markdown";
-import { Avatar } from "@/src/lib/blog/avatar";
+import { Avatar } from "@/src/lib/features/blog/avatar";
 import { HeadlessComponentProps } from "@/src/types/component.type";
 
 export const Root = ({

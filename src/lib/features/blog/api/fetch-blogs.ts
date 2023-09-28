@@ -1,5 +1,5 @@
 import { fetcher } from "@/src/helpers/fetcher";
-import { Blog } from "@/src/lib/blog/blog.types";
+import { Blog } from "@/src/lib/features/blog/blog.types";
 
 type FetchBlogsParams = {
   page?: number;
@@ -23,7 +23,7 @@ export async function fetchBlogs(params: FetchBlogsParams) {
       page: String(page),
     },
     next: {
-      revalidate: 3600,
+      revalidate: 43200,
     },
   });
 

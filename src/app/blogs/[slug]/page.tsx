@@ -1,13 +1,13 @@
 import { Suspense } from "react";
-import { BlogFeed } from "@/src/lib/blog/blog-feed";
-import { BlogFeedSkeleton } from "@/src/lib/blog/blog-skeleton";
-import { BlogCommentsSkeleton } from "@/src/lib/blog/comments/blog-comments-skeleton";
+import { BlogFeed } from "@/src/lib/features/blog/blog-feed";
+import { BlogFeedSkeleton } from "@/src/lib/features/blog/blog-skeleton";
+import { BlogCommentsSkeleton } from "@/src/lib/features/blog/comments/blog-comments-skeleton";
 import { generateBlogMetadata } from "@/src/app/blogs/[slug]/blog.metadata";
-import { fetchBlogComments } from "@/src/lib/blog/comments/api/fetch-blog-comments";
-import { CommentsContextProvider } from "@/src/lib/blog/comments/contexts/comments.context";
-import { BlogCommentsList } from "@/src/lib/blog/comments/blog-comments-list";
-import { CommentForm } from "@/src/lib/blog/blog-comments";
-import { BlogLoadMoreComments } from "@/src/lib/blog/blog-comments";
+import { fetchBlogComments } from "@/src/lib/features/blog/comments/api/fetch-blog-comments";
+import { CommentsContextProvider } from "@/src/lib/features/blog/comments/contexts/comments.context";
+import { BlogCommentsList } from "@/src/lib/features/blog/comments/blog-comments-list";
+import { CommentForm } from "@/src/lib/features/blog/blog-comments";
+import { BlogLoadMoreComments } from "@/src/lib/features/blog/blog-comments";
 
 type BlogPageProps = {
   params: {
@@ -16,8 +16,6 @@ type BlogPageProps = {
 };
 
 export const generateMetadata = generateBlogMetadata;
-
-export const revalidate = 3600;
 
 async function BlogComments(props: { slug: string }) {
   const { slug } = props;

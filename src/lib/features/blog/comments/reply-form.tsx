@@ -1,4 +1,4 @@
-import { useCommentContext } from "@/src/lib/blog/comments/contexts/comment.context";
+import { useCommentContext } from "@/src/lib/features/blog/comments/contexts/comment.context";
 import { Button } from "@/src/lib/ui/button";
 import { AnimationProps, motion } from "framer-motion";
 import { Input } from "@/src/lib/ui/input";

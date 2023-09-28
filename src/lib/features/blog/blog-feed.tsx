@@ -1,7 +1,7 @@
-import AvatarAI from "@/src/lib/blog/assets/ai-avatar.jpg";
-import { fetchBlogFeed } from "@/src/lib/blog/api/fetch-blog-feed";
+import AvatarAI from "@/src/lib/features/blog/assets/ai-avatar.jpg";
+import { fetchBlogFeed } from "@/src/lib/features/blog/api/fetch-blog-feed";
 import { notFound } from "next/navigation";
-import * as Blog from "@/src/lib/blog/headless/blog.headless";
+import * as Blog from "@/src/lib/features/blog/headless/blog.headless";
 
 type BlogFeedProps = {
   slug: string;

@@ -1,9 +1,9 @@
-import { BlogsList } from "@/src/lib/blog/blogs-list";
+import { BlogsList } from "@/src/lib/features/blog/blogs-list";
 import { Button } from "@/src/lib/ui/button";
 import Link from "next/link";
 import { useMemo } from "react";
-import { BLOGS_PER_PAGE } from "@/src/lib/blog/api/blogs.api";
-import { fetchBlogs } from "@/src/lib/blog/api/fetch-blogs";
+import { BLOGS_PER_PAGE } from "@/src/lib/features/blog/api/blogs.api";
+import { fetchBlogs } from "@/src/lib/features/blog/api/fetch-blogs";
 
 type BlogsPageProps = {
   searchParams: {
