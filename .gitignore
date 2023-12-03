@@ -41,3 +41,4 @@ vercel.json
 cdk.out
 .next
 
+**/node_modules/**
