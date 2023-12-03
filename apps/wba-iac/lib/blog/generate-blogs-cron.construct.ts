@@ -8,15 +8,8 @@ import {
 import * as path from "path";
 import * as cdk from "aws-cdk-lib";
 
-type GenerateBlogsStackProps = {
-  /**
-   * The URL will be called with blog data as a POST request.
-   */
-  callbackUrl: string;
-};
-
 export class GenerateBlogsCronConstruct extends Construct {
-  constructor(scope: Construct, id: string, props: GenerateBlogsStackProps) {
+  constructor(scope: Construct, id: string) {
     super(scope, id);
 
     const generateBlogLambda = this.createGenerateBlogLambda();
@@ -26,23 +19,16 @@ export class GenerateBlogsCronConstruct extends Construct {
     cronRule.addTarget(
       new aws_events_targets.LambdaFunction(generateBlogLambda, {
         retryAttempts: 0,
-        event: aws_events.RuleTargetInput.fromObject({
-          callbackUrl: props.callbackUrl,
-        }),
       }),
     );
   }
 
   createGenerateBlogLambda() {
-    console.log(process.cwd());
     return new aws_lambda_nodejs.NodejsFunction(this, "GenerateBlogLambda", {
       runtime: aws_lambda.Runtime.NODEJS_20_X,
-      entry: path.resolve(
-        __dirname,
-        "../../../features/blog/crons/generate-blog.cron.ts",
-      ),
-      bundling: {},
+      entry: path.resolve(__dirname, "./generate-blog.cron.ts"),
       handler: "handler",
+      environment: this.createEnvironmentVariables(),
       timeout: cdk.Duration.seconds(120),
       memorySize: 256,
       architecture: aws_lambda.Architecture.ARM_64,
@@ -56,5 +42,20 @@ export class GenerateBlogsCronConstruct extends Construct {
       ruleName: "GenerateBlogCronRule",
       description: "Generate blog cron job",
     });
+  }
+
+  createEnvironmentVariables() {
+    return {
+      POSTGRES_URL: process.env.POSTGRES_URL,
+      POSTGRES_PRISMA_URL: process.env.POSTGRES_PRISMA_URL,
+      POSTGRES_URL_NON_POOLING: process.env.POSTGRES_URL_NON_POOLING,
+      POSTGRES_USER: process.env.POSTGRES_USER,
+      POSTGRES_HOST: process.env.POSTGRES_HOST,
+      POSTGRES_PASSWORD: process.env.POSTGRES_PASSWORD,
+      POSTGRES_DATABASE: process.env.POSTGRES_DATABASE,
+      OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+      CRON_SECRET_KEY: process.env.CRON_SECRET_KEY,
+      WB_API_URL: process.env.WB_API_URL,
+    } as Record<string, string>;
   }
 }

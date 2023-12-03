@@ -1,11 +1,8 @@
-import { prismaClient } from "@wba/prisma";
-import { openaiClient } from "@wba/openai";
-
 type GenerateBlogParams = {
   excludedTopics?: string[];
 };
 
-const generateBlogOpenAIMessage = (params: GenerateBlogParams) =>
+export const generateBlogOpenAIMessage = (params: GenerateBlogParams) =>
   `
 Please generate a blog entry for me, which is important, in Markdown. Find an interesting topic and delve into it: e.g:
 - specific library
@@ -59,49 +56,3 @@ Please
 }
 \`\`\`
 `.trim();
-
-type GenerateBlogResponse = {
-  topic: string;
-  content: string;
-  tags: string[];
-  slug: string;
-};
-
-export async function generateBlog() {
-  const blogTitles = await prismaClient.blog.findMany({
-    select: {
-      title: true,
-    },
-  });
-
-  const blogTopics = new Set(blogTitles.map((blog) => blog.title));
-
-  const response = await openaiClient.chat.completions.create({
-    model: "gpt-3.5-turbo",
-    n: 1,
-    temperature: 0.8,
-    messages: [
-      {
-        role: "user",
-        content: generateBlogOpenAIMessage({
-          excludedTopics: Array.from(blogTopics),
-        }),
-      },
-    ],
-  });
-
-  const res = JSON.parse(
-    response.choices[0].message.content!,
-  ) as GenerateBlogResponse;
-
-  return prismaClient.blog.create({
-    data: {
-      tags: res.tags,
-      title: res.topic,
-      content: res.content,
-      slug: res.slug,
-      // TODO: maybe generate image using some AI tool
-      image: "https://picsum.photos/seed/picsum/200/300",
-    },
-  });
-}

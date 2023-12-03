@@ -1,0 +1,13 @@
+{
+  "name": "@wba/logic",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@wba/eslint-config-custom": "workspace:*",
+    "@wba/tsconfig": "workspace:*",
+    "@wba/types": "workspace:*",
+    "@wba/prisma": "workspace:*",
+    "@wba/openai": "workspace:*",
+    "openai": "^4.20.1"
+  }
+}

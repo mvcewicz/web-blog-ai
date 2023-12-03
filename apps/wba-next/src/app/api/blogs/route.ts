@@ -1,4 +1,4 @@
-import { prismaClient } from "@wba/next/src/lib/helpers/clients/prisma-client";
+import { prismaClient } from "@wba/prisma";
 import { NextURL } from "next/dist/server/web/next-url";
 import { NextRequest } from "next/server";
 import { BLOGS_PER_PAGE } from "@wba/next/src/lib/features/blog/api/blogs.api";

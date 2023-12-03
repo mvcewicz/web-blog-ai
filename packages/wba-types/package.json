@@ -1,0 +1,8 @@
+{
+  "name": "@wba/types",
+  "version": "1.0.0",
+  "devDependencies": {
+    "@wba/tsconfig": "workspace:*",
+    "@wba/eslint-config-custom": "workspace:*"
+  }
+}

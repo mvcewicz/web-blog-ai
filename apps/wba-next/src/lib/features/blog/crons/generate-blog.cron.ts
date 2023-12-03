@@ -1,5 +1,5 @@
-import { prismaClient } from "@wba/next/src/lib/helpers/clients/prisma-client";
-import { openaiClient } from "@wba/next/src/lib/helpers/clients/openai-client";
+import { prismaClient } from "@wba/prisma";
+import { openaiClient } from "@wba/openai";
 
 type GenerateBlogParams = {
   excludedTopics?: string[];

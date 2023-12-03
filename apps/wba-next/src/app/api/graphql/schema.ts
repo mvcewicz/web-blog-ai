@@ -1,6 +1,6 @@
 import SchemaBuilder from "@pothos/core";
 import PrismaPlugin from "@pothos/plugin-prisma";
-import { prismaClient } from "@wba/next/src/lib/helpers/clients/prisma-client";
+import { prismaClient } from "@wba/prisma";
 import PrismaTypes from "@pothos/plugin-prisma/generated";
 
 export const schemaBuilder = new SchemaBuilder<{

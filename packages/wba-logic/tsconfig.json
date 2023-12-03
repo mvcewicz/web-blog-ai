@@ -1,0 +1,9 @@
+{
+  "extends": "@wba/tsconfig/tsconfig.base.json",
+  "compilerOptions": {
+    "paths": {
+      "@wba/logic/*": ["./*"]
+    }
+  },
+  "exclude": ["node_modules"],
+}

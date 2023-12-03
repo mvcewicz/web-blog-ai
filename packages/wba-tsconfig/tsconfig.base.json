@@ -19,10 +19,6 @@
       }
     ],
     "paths": {
-      "@wba/prisma": ["../packages/wba-prisma/src/prisma.ts"],
-      "@wba/tsconfig/*": ["../packages/wba-tsconfig/*"],
-      "@wba/next/*": ["../apps/wba-next/*"],
-      "@wba/iac/*": ["../apps/wba-iac/*"],
       "~/*": ["./*"]
     }
   },

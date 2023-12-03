@@ -1,0 +1,10 @@
+{
+  "extends": "@wba/tsconfig/tsconfig.base.json",
+  "compilerOptions": {
+    "incremental": false,
+    "paths": {
+      "@wba/next/*": ["./*"]
+    }
+  },
+  "exclude": ["node_modules"],
+}

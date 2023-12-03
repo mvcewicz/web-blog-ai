@@ -1,9 +1,8 @@
 {
-  "extends": ["@wba/tsconfig/tsconfig.base.json"],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@wba/iac/*": ["./*"]
     },
     "target": "ES2020",
     "module": "commonjs",
