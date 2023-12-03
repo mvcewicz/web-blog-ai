@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@wba/prisma": ["../packages/wba-prisma/src/prisma.ts"],
+      "@wba/tsconfig/*": ["../packages/wba-tsconfig/*"],
+      "@wba/next/*": ["../apps/wba-next/*"],
+      "@wba/iac/*": ["../apps/wba-iac/*"],
+      "~/*": ["./*"]
+    }
+  },
+  "exclude": ["node_modules"]
+}
