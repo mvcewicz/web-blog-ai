@@ -1,4 +1,4 @@
-import { fetcher } from "@/src/helpers/fetcher";
+import { fetcher } from "@/src/lib/helpers/fetcher";
 import { Blog } from "@/src/lib/features/blog/blog.types";
 
 type FetchBlogsParams = {
@@ -16,8 +16,7 @@ type FetchBlogsResponse = {
 
 export async function fetchBlogs(params: FetchBlogsParams) {
   const page = params.page ?? 1;
-
-  const response = await fetcher<FetchBlogsResponse>({
+  return fetcher<FetchBlogsResponse>({
     url: "/api/blogs",
     query: {
       page: String(page),
@@ -26,6 +25,4 @@ export async function fetchBlogs(params: FetchBlogsParams) {
       revalidate: 43200,
     },
   });
-
-  return response;
 }

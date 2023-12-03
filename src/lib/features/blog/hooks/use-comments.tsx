@@ -1,5 +1,5 @@
-import { Comment } from "@/src/lib/features/blog/comments/blog-comment.types";
-import { fetchBlogComments } from "@/src/lib/features/blog/comments/api/fetch-blog-comments";
+import { Comment } from "@/src/lib/features/blog/blog-comments.types";
+import { fetchBlogComments } from "@/src/lib/features/blog/api/fetch-blog-comments";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 type UseCommentsProps = {

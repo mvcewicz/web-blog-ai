@@ -1,4 +1,4 @@
-import { prismaClient } from "@/src/helpers/clients/prisma-client";
+import { prismaClient } from "@/src/lib/helpers/clients/prisma-client";
 import { NextRequest } from "next/server";
 
 type BlogRequestContext = {

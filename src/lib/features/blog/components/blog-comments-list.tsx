@@ -1,9 +1,9 @@
 "use client";
 
-import { Comment } from "@/src/lib/features/blog/comments/blog-comment.types";
-import { BlogComment } from "@/src/lib/features/blog/comments/blog-comment";
+import { Comment } from "@/src/lib/features/blog/blog-comments.types";
+import { BlogComment } from "@/src/lib/features/blog/components/blog-comment";
 import { motion, AnimationProps } from "framer-motion";
-import { useCommentsContext } from "@/src/lib/features/blog/comments/contexts/comments.context";
+import { useCommentsContext } from "@/src/lib/features/blog/contexts/comments.context";
 
 type BlogCommentsListProps = {
   comments: Comment[];

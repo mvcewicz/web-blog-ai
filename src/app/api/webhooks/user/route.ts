@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { prismaClient } from "@/src/helpers/clients/prisma-client";
+import { prismaClient } from "@/src/lib/helpers/clients/prisma-client";
 
 type UserCreatedBody = {
   data: {

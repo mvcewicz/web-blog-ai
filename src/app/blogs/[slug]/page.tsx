@@ -1,13 +1,13 @@
 import { Suspense } from "react";
-import { BlogFeed } from "@/src/lib/features/blog/blog-feed";
-import { BlogFeedSkeleton } from "@/src/lib/features/blog/blog-skeleton";
-import { BlogCommentsSkeleton } from "@/src/lib/features/blog/comments/blog-comments-skeleton";
+import { BlogFeed } from "@/src/lib/features/blog/components/blog-feed";
+import { BlogFeedSkeleton } from "@/src/lib/features/blog/components/blog-skeleton";
+import { BlogCommentsSkeleton } from "@/src/lib/features/blog/components/blog-comments-skeleton";
 import { generateBlogMetadata } from "@/src/app/blogs/[slug]/blog.metadata";
-import { fetchBlogComments } from "@/src/lib/features/blog/comments/api/fetch-blog-comments";
-import { CommentsContextProvider } from "@/src/lib/features/blog/comments/contexts/comments.context";
-import { BlogCommentsList } from "@/src/lib/features/blog/comments/blog-comments-list";
-import { CommentForm } from "@/src/lib/features/blog/blog-comments";
-import { BlogLoadMoreComments } from "@/src/lib/features/blog/blog-comments";
+import { fetchBlogComments } from "@/src/lib/features/blog/api/fetch-blog-comments";
+import { CommentsContextProvider } from "@/src/lib/features/blog/contexts/comments.context";
+import { BlogCommentsList } from "@/src/lib/features/blog/components/blog-comments-list";
+import { CommentForm } from "@/src/lib/features/blog/components/blog-comments";
+import { BlogLoadMoreComments } from "@/src/lib/features/blog/components/blog-comments";
 
 type BlogPageProps = {
   params: {
@@ -27,7 +27,7 @@ async function BlogComments(props: { slug: string }) {
       nextCursor={pagination.nextCursor}
     >
       <div className="flex w-full flex-col gap-8 sm:w-4/5 md:w-3/4 lg:w-1/2">
-        <CommentForm />
+        {/*<CommentForm />*/}
         <BlogCommentsList />
         <BlogLoadMoreComments />
       </div>

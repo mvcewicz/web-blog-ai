@@ -1,5 +1,5 @@
-import { prismaClient } from "@/src/helpers/clients/prisma-client";
-import { verifySession } from "@/src/helpers/server/session";
+import { prismaClient } from "@/src/lib/helpers/clients/prisma-client";
+import { verifySession } from "@/src/lib/helpers/server/session";
 import { NextRequest } from "next/server";
 
 type GetBlogCommentsRequestContext = {

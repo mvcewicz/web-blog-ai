@@ -1,4 +1,4 @@
-import * as BlogCard from "@/src/lib/features/blog/headless/blog-card.headless";
+import * as BlogCard from "@/src/lib/features/blog/components/headless/blog-card.headless";
 import Link from "next/link";
 import { Blog } from "@/src/lib/features/blog/blog.types";
 

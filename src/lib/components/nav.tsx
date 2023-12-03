@@ -10,6 +10,7 @@ import {
 
 import { NavigationMenuTrigger } from "@radix-ui/react-navigation-menu";
 import { AuthButton } from "@/src/lib/features/auth/auth-modal";
+import { Suspense } from "react";
 
 const primaryLinks = [
   {
@@ -40,7 +41,7 @@ export function Nav() {
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger>
-            <AuthButton />
+            <Suspense>{/*<AuthButton />*/}</Suspense>
           </NavigationMenuTrigger>
         </NavigationMenuItem>
       </NavigationMenuList>

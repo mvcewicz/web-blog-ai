@@ -1,4 +1,4 @@
-import { useCommentContext } from "@/src/lib/features/blog/comments/contexts/comment.context";
+import { useCommentContext } from "@/src/lib/features/blog/contexts/comment.context";
 import { Button } from "@/src/lib/ui/button";
 import { AnimationProps, motion } from "framer-motion";
 import { Input } from "@/src/lib/ui/input";
@@ -28,21 +28,18 @@ const replyFormAnimation = {
 
 const useReplyForm = () => {
   const { context } = useCommentContext();
-
   const user = useUser();
-
   return {
     user,
     context,
   };
 };
 
-export function ReplyForm() {
+export function BlogCommentsReplyForm() {
   const {
     context: { reply, onCommentContentChange, commentContent, isLoading },
     user,
   } = useReplyForm();
-
   return (
     <motion.form
       onSubmit={(e) => {

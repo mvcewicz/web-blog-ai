@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext } from "react";
-import { Comment } from "@/src/lib/features/blog/comments/blog-comment.types";
-import { useComment } from "@/src/lib/features/blog/comments/hooks/use-comment";
+import { Comment } from "@/src/lib/features/blog/blog-comments.types";
+import { useComment } from "@/src/lib/features/blog/hooks/use-comment";
 
 type CommentContext = {
   comment: Comment;

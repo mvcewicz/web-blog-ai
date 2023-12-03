@@ -1,18 +1,18 @@
 "use client";
 
 import { Button, buttonVariants } from "@/src/lib/ui/button";
-import { Comment } from "@/src/lib/features/blog/comments/blog-comment.types";
+import { Comment } from "@/src/lib/features/blog/blog-comments.types";
 import {
   CommentContextProvider,
   useCommentContext,
-} from "@/src/lib/features/blog/comments/contexts/comment.context";
-import { CommentsList } from "@/src/lib/features/blog/comments/blog-comments-list";
+} from "@/src/lib/features/blog/contexts/comment.context";
+import { CommentsList } from "@/src/lib/features/blog/components/blog-comments-list";
 import { AnimatePresence } from "framer-motion";
-import { ReplyForm } from "@/src/lib/features/blog/comments/reply-form";
 import { FaReply } from "react-icons/fa";
-import { cn } from "@/src/helpers/utils";
-import { Avatar } from "@/src/lib/features/blog/avatar";
-import { CascadeLoading } from "@/src/lib/cascade-loading";
+import { cn } from "@/src/lib/helpers/utils";
+import { Avatar } from "@/src/lib/features/blog/components/avatar";
+import { CascadeLoading } from "@/src/lib/components/cascade-loading";
+import { Suspense } from "react";
 
 type BlogCommentProps = {
   comment: Comment;
@@ -68,7 +68,6 @@ function CommentReplyButton() {
   const {
     context: { toggleReply },
   } = useCommentContext();
-
   return (
     <Button
       aria-label="Reply"
@@ -92,7 +91,6 @@ function useCommentReplies() {
       reply,
     },
   } = useCommentContext();
-
   return {
     reply,
     isReplying,
@@ -105,22 +103,19 @@ function useCommentReplies() {
 
 function CommentRepliesList() {
   const { commentQuery } = useCommentReplies();
-
   if (commentQuery.isLoading || commentQuery.isFetching) {
     return <CascadeLoading />;
   }
-
-  if (!commentQuery.data?.replies) return null;
-
+  if (!commentQuery.data?.replies) {
+    return null;
+  }
   return <CommentsList comments={commentQuery.data?.replies} />;
 }
 
 function CommentReplies() {
   const { toggleReplies, commentQuery, isRepliesVisible, isReplying } =
     useCommentReplies();
-
   const comment = commentQuery.data!;
-
   return (
     <>
       <div className="flex gap-6 py-1">
@@ -134,7 +129,9 @@ function CommentReplies() {
           </button>
         )}
       </div>
-      <AnimatePresence>{isReplying && <ReplyForm />}</AnimatePresence>
+      <AnimatePresence>
+        {isReplying && <Suspense>{/*<BlogCommentsReplyForm />*/}</Suspense>}
+      </AnimatePresence>
       <AnimatePresence>
         {isRepliesVisible && (
           <div className="ml-4 mt-4 md:ml-8">
@@ -148,7 +145,6 @@ function CommentReplies() {
 
 function CommentMetadata() {
   const { comment } = useCommentContext();
-
   return (
     <div className="flex flex-col gap-2">
       <span className="flex flex-col items-center gap-0.5 text-xs text-darken">

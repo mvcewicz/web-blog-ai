@@ -2,20 +2,19 @@
 
 import { Textarea } from "@/src/lib/ui/textarea";
 import { Button, buttonVariants } from "@/src/lib/ui/button";
-import { cn } from "@/src/helpers/utils";
-import { useCommentsContext } from "@/src/lib/features/blog/comments/contexts/comments.context";
+import { cn } from "@/src/lib/helpers/utils";
+import { useCommentsContext } from "@/src/lib/features/blog/contexts/comments.context";
 import { useMutation } from "@tanstack/react-query";
-import { fetcher } from "@/src/helpers/fetcher";
+import { fetcher } from "@/src/lib/helpers/fetcher";
 import { useParams } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
 import { FormEvent } from "react";
-import { CascadeLoading } from "@/src/lib/cascade-loading";
-import { queryClient } from "@/src/helpers/clients/query-client";
+import { CascadeLoading } from "@/src/lib/components/cascade-loading";
+import { queryClient } from "@/src/lib/helpers/clients/query-client";
 
 const useCommentForm = () => {
   const params = useParams();
   const user = useUser();
-
   const blogSlug = params.slug;
 
   const addCommentMutation = useMutation({
@@ -52,9 +51,7 @@ const useCommentForm = () => {
 
 export function CommentForm() {
   const { handleSubmit, user, addCommentMutation } = useCommentForm();
-
   const isDisabled = !user?.isSignedIn || addCommentMutation.isLoading;
-
   return (
     <form onSubmit={handleSubmit}>
       <div className="flex flex-col gap-4">
@@ -82,9 +79,7 @@ export function CommentForm() {
 export function BlogLoadMoreComments() {
   const { commentsQuery } = useCommentsContext();
   if (!commentsQuery.hasNextPage) return null;
-
   const isLoading = commentsQuery.isFetchingNextPage || commentsQuery.isLoading;
-
   return (
     <Button
       type={"button"}

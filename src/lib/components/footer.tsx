@@ -27,8 +27,6 @@ function SocialLinks() {
             key={link.name}
           >
             <link.icon />
-            {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-            {/* @ts-ignore */}
             <Link className="text-xs" href={link.url}>
               {link.label}
             </Link>
@@ -45,7 +43,6 @@ export function Footer() {
       <div>
         <SocialLinks />
       </div>
-      <div></div>
     </footer>
   );
 }

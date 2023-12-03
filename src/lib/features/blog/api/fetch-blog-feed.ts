@@ -1,4 +1,4 @@
-import { fetcher } from "@/src/helpers/fetcher";
+import { fetcher } from "@/src/lib/helpers/fetcher";
 import { Blog } from "@/src/lib/features/blog/blog.types";
 import { cache } from "react";
 

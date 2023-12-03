@@ -1,7 +1,7 @@
-import { cn } from "@/src/helpers/utils";
+import { cn } from "@/src/lib/helpers/utils";
 import ReactMarkdown from "react-markdown";
-import { Avatar } from "@/src/lib/features/blog/avatar";
-import { HeadlessComponentProps } from "@/src/types/component.type";
+import { Avatar } from "@/src/lib/features/blog/components/avatar";
+import { HeadlessComponentProps } from "@/src/lib/types/component.type";
 
 export const Root = ({
   children,

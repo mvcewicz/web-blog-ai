@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { HeadlessComponentProps } from "@/src/types/component.type";
-import { cn } from "@/src/helpers/utils";
+import { HeadlessComponentProps } from "@/src/lib/types/component.type";
+import { cn } from "@/src/lib/helpers/utils";
 
 export const Root = ({
   children,

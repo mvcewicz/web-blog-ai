@@ -1,9 +1,9 @@
-import { Comment } from "@/src/lib/features/blog/comments/blog-comment.types";
+import { Comment } from "@/src/lib/features/blog/blog-comments.types";
 import { useEffect, useState } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { fetcher } from "@/src/helpers/fetcher";
-import { useCommentsContext } from "@/src/lib/features/blog/comments/contexts/comments.context";
-import { queryClient } from "@/src/helpers/clients/query-client";
+import { fetcher } from "@/src/lib/helpers/fetcher";
+import { useCommentsContext } from "@/src/lib/features/blog/contexts/comments.context";
+import { queryClient } from "@/src/lib/helpers/clients/query-client";
 import { useParams } from "next/navigation";
 
 export const useCommentLocal = (commentId: string) => {

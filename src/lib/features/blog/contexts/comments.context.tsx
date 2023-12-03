@@ -1,8 +1,8 @@
 "use client";
 
 import { createContext, ReactNode, useContext } from "react";
-import { Comment } from "@/src/lib/features/blog/comments/blog-comment.types";
-import { useComments } from "@/src/lib/features/blog/comments/hooks/use-comments";
+import { Comment } from "@/src/lib/features/blog/blog-comments.types";
+import { useComments } from "@/src/lib/features/blog/hooks/use-comments";
 
 type CommentsContext = ReturnType<typeof useComments>;
 

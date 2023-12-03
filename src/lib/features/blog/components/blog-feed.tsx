@@ -1,7 +1,7 @@
 import AvatarAI from "@/src/lib/features/blog/assets/ai-avatar.jpg";
 import { fetchBlogFeed } from "@/src/lib/features/blog/api/fetch-blog-feed";
 import { notFound } from "next/navigation";
-import * as Blog from "@/src/lib/features/blog/headless/blog.headless";
+import * as Blog from "@/src/lib/features/blog/components/headless/blog.headless";
 
 type BlogFeedProps = {
   slug: string;
@@ -12,9 +12,7 @@ export async function BlogFeed({ slug }: BlogFeedProps) {
     console.error(error);
     return undefined;
   });
-
   if (!blog) return notFound();
-
   return (
     <Blog.Root>
       <Blog.Header>

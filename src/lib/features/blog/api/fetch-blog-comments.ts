@@ -1,5 +1,5 @@
-import { Comment } from "@/src/lib/features/blog/comments/blog-comment.types";
-import { fetcher } from "@/src/helpers/fetcher";
+import { Comment } from "@/src/lib/features/blog/blog-comments.types";
+import { fetcher } from "@/src/lib/helpers/fetcher";
 
 type FetchBlogCommentsResponse = {
   items: Comment[];
@@ -12,7 +12,6 @@ export async function fetchBlogComments(
   slug: string,
   cursor?: string,
 ): Promise<FetchBlogCommentsResponse> {
-  // TODO: Fetch blog comments from API
   const data = await fetcher<FetchBlogCommentsResponse>({
     url: `/api/blogs/${slug}/comments`,
     query: {
@@ -23,7 +22,6 @@ export async function fetchBlogComments(
       revalidate: 30,
     },
   });
-
   return {
     items: data.items,
     pagination: {

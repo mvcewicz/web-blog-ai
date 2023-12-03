@@ -1,7 +1,7 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { verifySession } from "@/src/helpers/server/session";
+import { verifySession } from "@/src/lib/helpers/server/session";
 
 export async function addCommentAction(formData: FormData) {
   "use server";
