@@ -1,4 +1,4 @@
-import { Comment } from "@wba/next/src/lib/features/blog/blog-comments.types";
+import { BlogComment } from "@wba/next/src/lib/features/blog/blog-comments.types";
 import { useEffect, useState } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { fetcher } from "@wba/next/src/lib/helpers/fetcher";
@@ -6,23 +6,23 @@ import { useCommentsContext } from "@wba/next/src/lib/features/blog/contexts/com
 import { queryClient } from "@wba/next/src/lib/helpers/clients/query-client";
 import { useParams } from "next/navigation";
 
-export const useCommentLocal = (commentId: string) => {
+export const useCommentQuery = (commentId: string) => {
   const commentsContext = useCommentsContext();
   return useQuery({
     queryKey: ["comments", { id: commentId }],
     queryFn: async () => {
-      const res = await fetcher<{ item: Comment }>({
+      const res = await fetcher<{ item: BlogComment }>({
         url: `/api/blogs/${commentsContext.slug}/comments/${commentId}`,
       });
       return res.item;
     },
     initialData: () => {
       const commentsQuery = queryClient.getQueryData(["comments"]) as {
-        pages: { items: Comment[] }[];
+        pages: { items: BlogComment[] }[];
       };
-      return commentsQuery.pages
-        .flatMap((page) => page.items)
-        .find((comment) => comment.id === commentId);
+      return commentsQuery?.pages
+        ?.flatMap((page) => page.items)
+        ?.find((comment) => comment.id === commentId);
     },
     refetchIntervalInBackground: false,
     refetchOnMount: false,
@@ -46,16 +46,16 @@ function useCommentReplyMutation(commentId: string) {
   });
 }
 
-export function useComment(comment: Comment) {
+export function useComment(comment: BlogComment) {
   const [isRepliesVisible, setIsRepliesVisible] = useState(false);
   const [isReplying, setIsReplying] = useState(false);
   const [commentContent, setCommentContent] = useState("");
   const commentReplyMutation = useCommentReplyMutation(comment.id);
-  const commentQuery = useCommentLocal(comment.id);
+  const commentQuery = useCommentQuery(comment.id);
 
   useEffect(() => {
     if (!commentQuery.data?.replies && isRepliesVisible) {
-      commentQuery.refetch();
+      void commentQuery.refetch();
     }
   }, [commentQuery, isRepliesVisible]);
 

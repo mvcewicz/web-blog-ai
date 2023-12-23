@@ -10,28 +10,38 @@ import {
 
 import { NavigationMenuTrigger } from "@radix-ui/react-navigation-menu";
 import { AuthButton } from "@wba/next/src/lib/features/auth/auth-modal";
-import { Suspense } from "react";
+import { twMerge } from "tailwind-merge";
 
-const primaryLinks = [
+type PrimaryLink = {
+  href: string;
+  label: string;
+  isHighlighted?: boolean;
+};
+
+const primaryLinks: PrimaryLink[] = [
   {
     href: "/",
     label: "WebBlog.AI",
+    isHighlighted: true,
   },
   {
-    href: "/blog",
+    href: "/blogs",
     label: "Blogs",
   },
 ] as const;
 
 export function Nav() {
   return (
-    <NavigationMenu className="max-w-initial flex flex max-w-full flex-initial justify-between p-4">
+    <NavigationMenu className="max-w-initial flex max-w-full flex-initial justify-between p-4">
       <NavigationMenuList>
         {primaryLinks.map((link) => (
           <NavigationMenuItem key={link.href}>
             <NavigationMenuLink
               href={link.href}
-              className={navigationMenuTriggerStyle()}
+              className={twMerge(
+                navigationMenuTriggerStyle(),
+                link.isHighlighted && "border",
+              )}
             >
               {link.label}
             </NavigationMenuLink>
@@ -41,7 +51,7 @@ export function Nav() {
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger>
-            <Suspense>{/*<AuthButton />*/}</Suspense>
+            <AuthButton />
           </NavigationMenuTrigger>
         </NavigationMenuItem>
       </NavigationMenuList>

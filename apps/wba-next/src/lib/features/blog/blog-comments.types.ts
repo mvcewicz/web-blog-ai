@@ -1,16 +1,17 @@
-export type Comment = {
+export type BlogComment = {
   id: string;
   parentId?: string;
   user: {
+    id: string;
     name: string;
     image: string;
   };
   content: string;
-  votes: {
+  votes?: {
     up: number;
     down: number;
   };
   createdAt: string;
-  replies?: Comment[];
+  replies?: BlogComment[];
   replyCount?: number;
 };

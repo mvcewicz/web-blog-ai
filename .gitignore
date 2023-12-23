@@ -40,5 +40,6 @@ vercel.json
 .turbo
 cdk.out
 .next
+apps/wba-scripts
 
 **/node_modules/**

@@ -5,12 +5,11 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { cn } from "@wba/next/src/lib/helpers/utils";
 import { Footer } from "@wba/next/src/lib/components/footer";
-import { ReactNode, Suspense } from "react";
+import { ReactNode } from "react";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "@wba/next/src/lib/helpers/clients/query-client";
-import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@wba/next/src/lib/providers/theme.provider";
-import { unstable_noStore } from "next/cache";
+import { AuthProvider } from "@wba/next/src/lib/providers/auth.provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,21 +22,6 @@ type RootLayoutProps = {
   children: ReactNode;
 };
 
-type AuthProviderProps = {
-  children: ReactNode;
-};
-
-const AuthProvider = ({ children }: AuthProviderProps) => {
-  unstable_noStore();
-  return (
-    <ClerkProvider
-      publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
-    >
-      {children}
-    </ClerkProvider>
-  );
-};
-
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -48,7 +32,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
           "bg-background m-0 flex min-h-screen flex-col",
         )}
       >
-        {/*<AuthProvider>*/}
         <QueryClientProvider client={queryClient}>
           <ThemeProvider
             attribute="class"
@@ -56,14 +39,15 @@ export default function RootLayout({ children }: RootLayoutProps) {
             enableSystem
             disableTransitionOnChange
           >
-            <Nav />
-            <main className="flex flex-1 flex-col px-6 py-4 sm:px-10">
-              {children}
-            </main>
-            <Footer />
+            <AuthProvider>
+              <Nav />
+              <main className="flex flex-1 flex-col px-6 py-4 sm:px-10">
+                {children}
+              </main>
+              <Footer />
+            </AuthProvider>
           </ThemeProvider>
         </QueryClientProvider>
-        {/*</AuthProvider>*/}
       </body>
     </html>
   );

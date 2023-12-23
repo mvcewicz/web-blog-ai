@@ -31,7 +31,6 @@ export const fetcher = async <TResponse>(
       }
     });
   }
-
   const response = await fetch(url, {
     ...config,
     method: config.method ?? "GET",

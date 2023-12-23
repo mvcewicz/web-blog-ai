@@ -55,7 +55,7 @@ export class GenerateBlogsCronConstruct extends Construct {
       POSTGRES_DATABASE: process.env.POSTGRES_DATABASE,
       OPENAI_API_KEY: process.env.OPENAI_API_KEY,
       CRON_SECRET_KEY: process.env.CRON_SECRET_KEY,
-      WB_API_URL: process.env.WB_API_URL,
+      WBA_API_URL: process.env.WBA_API_URL,
     } as Record<string, string>;
   }
 }

@@ -14,7 +14,7 @@ export function BlogsList({ blogs }: BlogsListProps) {
     >
       {blogs.map((blog) => (
         <li key={blog.slug}>
-          <Link href={`/blogs/${blog.slug}`}>
+          <Link href={`/blog/${blog.slug}`}>
             <BlogCard.Root>
               <BlogCard.HeaderImage
                 src={blog.image}

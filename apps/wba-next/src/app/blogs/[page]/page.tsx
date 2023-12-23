@@ -6,9 +6,6 @@ import { BLOGS_PER_PAGE } from "@wba/next/src/lib/features/blog/api/blogs.api";
 import { fetchBlogs } from "@wba/next/src/lib/features/blog/api/fetch-blogs";
 
 type BlogsPageProps = {
-  searchParams: {
-    page?: string;
-  };
   params: {
     page?: string;
   };
@@ -52,7 +49,7 @@ function BlogsPagination({ page, total }: BlogsPaginationProps) {
     <ul role="list" className="flex items-center justify-center gap-2">
       {paginationOptions.map((option) => (
         <li key={option}>
-          <Link href={`/blogs?page=${option}`}>
+          <Link href={`/blogs/${option}`}>
             <Button variant="outline">{option}</Button>
           </Link>
         </li>
@@ -61,10 +58,20 @@ function BlogsPagination({ page, total }: BlogsPaginationProps) {
   );
 }
 
-export default async function BlogsPage({ searchParams }: BlogsPageProps) {
+export const generateStaticParams = async () => {
+  const blogs = await fetchBlogs();
+  return Array.from({ length: blogs.pagination.total / BLOGS_PER_PAGE }).map(
+    (_, index) => ({
+      params: {
+        page: String(index + 1),
+      },
+    }),
+  );
+};
+
+export default async function BlogsPage({ params }: BlogsPageProps) {
   const { items: blogs, pagination } = await fetchBlogs({
-    ...searchParams,
-    page: Number(searchParams.page ?? 1),
+    page: Number(params.page ?? 1),
   });
   return (
     <div className="flex flex-col gap-4">

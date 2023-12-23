@@ -1,9 +1,9 @@
 import { createContext, ReactNode, useContext } from "react";
-import { Comment } from "@wba/next/src/lib/features/blog/blog-comments.types";
+import { BlogComment } from "@wba/next/src/lib/features/blog/blog-comments.types";
 import { useComment } from "@wba/next/src/lib/features/blog/hooks/use-comment";
 
 type CommentContext = {
-  comment: Comment;
+  comment: BlogComment;
   context: ReturnType<typeof useComment>;
 };
 
@@ -20,7 +20,7 @@ export function useCommentContext() {
 }
 
 type CommentContextProviderProps = {
-  comment: Comment;
+  comment: BlogComment;
   children: ReactNode;
 };
 

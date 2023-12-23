@@ -1,3 +1,6 @@
 {
+  "compilerOptions": {
+    "baseUrl": "."
+  },
   "extends": ["@wba/tsconfig/tsconfig.base.json"]
 }

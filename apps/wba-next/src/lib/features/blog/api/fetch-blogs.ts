@@ -14,15 +14,16 @@ type FetchBlogsResponse = {
   };
 };
 
-export async function fetchBlogs(params: FetchBlogsParams) {
-  const page = params.page ?? 1;
+export async function fetchBlogs(params?: FetchBlogsParams) {
+  const page = params?.page ?? 1;
   return fetcher<FetchBlogsResponse>({
     url: "/api/blogs",
     query: {
       page: String(page),
     },
     next: {
-      revalidate: 43200,
+      tags: ["blogs"],
     },
+    cache: "force-cache",
   });
 }

@@ -1,13 +1,16 @@
 {
   "name": "@wba/logic",
   "version": "1.0.0",
+  "main": "src/index.ts",
   "private": true,
   "dependencies": {
     "@wba/eslint-config-custom": "workspace:*",
+    "@wba/openai": "workspace:*",
+    "@wba/prisma": "workspace:*",
     "@wba/tsconfig": "workspace:*",
     "@wba/types": "workspace:*",
-    "@wba/prisma": "workspace:*",
-    "@wba/openai": "workspace:*",
-    "openai": "^4.20.1"
+    "openai": "^4.20.1",
+    "typescript": "^5.3.3",
+    "zod": "^3.22.4"
   }
 }

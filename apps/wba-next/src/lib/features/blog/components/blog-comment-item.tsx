@@ -1,7 +1,7 @@
 "use client";
 
 import { Button, buttonVariants } from "@wba/next/src/lib/ui/button";
-import { Comment } from "@wba/next/src/lib/features/blog/blog-comments.types";
+import { BlogComment } from "@wba/next/src/lib/features/blog/blog-comments.types";
 import {
   CommentContextProvider,
   useCommentContext,
@@ -12,10 +12,10 @@ import { FaReply } from "react-icons/fa";
 import { cn } from "@wba/next/src/lib/helpers/utils";
 import { Avatar } from "@wba/next/src/lib/features/blog/components/avatar";
 import { CascadeLoading } from "@wba/next/src/lib/components/cascade-loading";
-import { Suspense } from "react";
+import { BlogCommentsReplyForm } from "@wba/next/src/lib/features/blog/components/blog-comments-reply-form";
 
 type BlogCommentProps = {
-  comment: Comment;
+  comment: BlogComment;
 };
 
 function CommentVotes() {
@@ -45,7 +45,7 @@ function CommentVotes() {
 function CommentAuthor() {
   const { comment } = useCommentContext();
   return (
-    <div className="flex flex-col items-center justify-center gap-2">
+    <div className="flex-start flex flex-col content-center items-center gap-2">
       <CommentMetadata />
       <Avatar src={comment.user.image} alt={comment.user.name} variant="sm" />
       <span className="text-center text-xs">{comment.user.name}</span>
@@ -57,7 +57,7 @@ function CommentContent() {
   const { comment } = useCommentContext();
   return (
     <div className="flex flex-1 items-center justify-center">
-      <p className="bg-secondary flex-1 break-words rounded-xl px-4 py-2.5 text-xs font-bold">
+      <p className="text-secondary-foreground flex-1 break-words rounded-xl border px-4 py-2.5 text-xs font-bold">
         {comment.content}
       </p>
     </div>
@@ -130,7 +130,7 @@ function CommentReplies() {
         )}
       </div>
       <AnimatePresence>
-        {isReplying && <Suspense>{/*<BlogCommentsReplyForm />*/}</Suspense>}
+        {isReplying && <BlogCommentsReplyForm />}
       </AnimatePresence>
       <AnimatePresence>
         {isRepliesVisible && (
@@ -156,12 +156,12 @@ function CommentMetadata() {
   );
 }
 
-export function BlogComment({ comment }: BlogCommentProps) {
+export function BlogCommentItem({ comment }: BlogCommentProps) {
   return (
     <CommentContextProvider comment={comment}>
       <div className="relative flex flex-1 flex-col">
         <div className="flex flex-col gap-2">
-          <div className="flex gap-1">
+          <div className="flex gap-4">
             <CommentAuthor />
             <CommentContent />
           </div>

@@ -1,15 +1,14 @@
 {
-  "name": "iac",
+  "name": "@wba/iac",
   "version": "0.1.0",
   "bin": {
     "iac": "bin/iac.js"
   },
   "scripts": {
-    "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
-    "deploy": "cdk deploy"
+    "deploy": "cdk deploy --profile personal"
   },
   "devDependencies": {
     "@types/babel__traverse": "^7.20.4",

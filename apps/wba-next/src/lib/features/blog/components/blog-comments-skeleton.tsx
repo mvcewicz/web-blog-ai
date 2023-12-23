@@ -7,7 +7,7 @@ function BlogCommentRowSkeleton() {
       <div className="flex gap-4">
         <div className="flex flex-col items-center justify-center gap-2">
           <div className="flex flex-col gap-2">
-            <span className="text-darken text-darken flex flex-col items-center gap-0.5">
+            <span className="text-darken flex flex-col items-center gap-0.5">
               <span className="block">10/10/2021</span>
             </span>
           </div>
@@ -47,7 +47,7 @@ export function BlogCommentsSkeleton() {
               className="h-32 w-full rounded-lg shadow-md"
             />
             <Button className="h-10 w-full rounded-lg shadow-md">
-              Comment
+              BlogCommentItem
             </Button>
           </div>
         </form>

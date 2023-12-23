@@ -9,7 +9,6 @@ declare global {
   }
 }
 
-console.log(process.env)
 export const openaiClient = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });

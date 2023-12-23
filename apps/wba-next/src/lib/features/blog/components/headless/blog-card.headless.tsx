@@ -10,7 +10,7 @@ export const Root = ({
   return (
     <div
       className={cn(
-        "dark:bg-secondary group flex w-64 flex-col gap-2 overflow-hidden rounded-xl p-4 shadow drop-shadow",
+        "group flex w-64 flex-col gap-2 overflow-hidden rounded-xl border p-4 shadow drop-shadow",
         className,
       )}
       {...props}
@@ -30,6 +30,7 @@ export const HeaderImage = ({
         "flex aspect-square w-full flex-1 rounded-xl duration-100 group-hover:scale-95",
         className,
       )}
+      alt={props.alt}
       {...props}
     />
   );

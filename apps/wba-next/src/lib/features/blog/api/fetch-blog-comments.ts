@@ -1,8 +1,8 @@
-import { Comment } from "@wba/next/src/lib/features/blog/blog-comments.types";
+import { BlogComment } from "@wba/next/src/lib/features/blog/blog-comments.types";
 import { fetcher } from "@wba/next/src/lib/helpers/fetcher";
 
 type FetchBlogCommentsResponse = {
-  items: Comment[];
+  items: BlogComment[];
   pagination: {
     nextCursor?: string;
   };

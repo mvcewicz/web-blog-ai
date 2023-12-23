@@ -1,23 +1,23 @@
-import { Comment } from "@wba/next/src/lib/features/blog/blog-comments.types";
+import { BlogComment } from "@wba/next/src/lib/features/blog/blog-comments.types";
 import { fetchBlogComments } from "@wba/next/src/lib/features/blog/api/fetch-blog-comments";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 type UseCommentsProps = {
   slug: string;
-  comments: Comment[];
+  comments: BlogComment[];
   nextCursor?: string;
 };
 
 type UseCommentsQueryInput = {
   slug: string;
-  initialComments?: Comment[];
+  initialComments?: BlogComment[];
   initialCursor?: string;
 };
 
 function useCommentsQuery(input: UseCommentsQueryInput) {
   return useInfiniteQuery({
-    queryKey: ["comments"],
-    queryFn: (params) => {
+    queryKey: ["comments", input.slug],
+    queryFn: async (params) => {
       const cursor = params.pageParam;
       return fetchBlogComments(input.slug, cursor);
     },

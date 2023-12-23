@@ -1,5 +1,6 @@
 import { BlogDTO } from "@wba/types/src/blog.type";
-import { prisma } from "@wba/prisma/src";
+import { prismaClient } from "@wba/prisma";
+import { revalidatePath } from "next/cache";
 
 type BlogCreatedEvent = {
   data: BlogDTO;
@@ -9,14 +10,14 @@ type BlogCreatedEvent = {
 export const POST = async (req: Request) => {
   try {
     const { data, secret } = (await req.json()) as BlogCreatedEvent;
-    console.log(data);
     if (secret !== "123") {
       throw new Error("Invalid secret");
     }
-    const blog = await prisma.blog.create({
+    const blog = await prismaClient.blog.create({
       data,
     });
-    console.log(blog);
+    revalidatePath("/blogs/1");
+    revalidatePath(`/blog/${blog.slug}`);
   } catch (err) {
     console.error(err);
   }

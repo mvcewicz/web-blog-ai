@@ -64,6 +64,9 @@ export async function GET(
   const cursor = request.nextUrl?.searchParams.get("cursor");
 
   const comments = await prismaClient.comment.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
     where: {
       blog: {
         slug: context.params.slug,

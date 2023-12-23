@@ -27,7 +27,7 @@ function SocialLinks() {
             key={link.name}
           >
             <link.icon />
-            <Link className="text-xs" href={link.url}>
+            <Link className="text-xs hover:underline" href={link.url}>
               {link.label}
             </Link>
           </li>

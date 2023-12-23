@@ -1,8 +1,8 @@
 "use client";
 
 import { createContext, ReactNode, useContext } from "react";
-import { Comment } from "@wba/next/src/lib/features/blog/blog-comments.types";
 import { useComments } from "@wba/next/src/lib/features/blog/hooks/use-comments";
+import { BlogComment } from "@wba/next/src/lib/features/blog/blog-comments.types";
 
 type CommentsContext = ReturnType<typeof useComments>;
 
@@ -20,7 +20,7 @@ export function useCommentsContext() {
 
 type CommentsContextProviderProps = {
   children: ReactNode;
-  comments: Comment[];
+  comments: BlogComment[];
   nextCursor?: string;
   slug: string;
 };

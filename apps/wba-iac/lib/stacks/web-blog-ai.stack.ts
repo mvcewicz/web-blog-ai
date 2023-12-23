@@ -4,6 +4,6 @@ import { GenerateBlogsCronConstruct } from "@wba/iac/lib/blog/generate-blogs-cro
 export class WebBlogAiStack extends Stack {
   constructor(scope: App, id: string, props?: StackProps) {
     super(scope, id, props);
-    new GenerateBlogsCronConstruct(this, "GenerateBlogsCronConstruct")
+    new GenerateBlogsCronConstruct(this, "GenerateBlogsCronConstruct");
   }
 }
