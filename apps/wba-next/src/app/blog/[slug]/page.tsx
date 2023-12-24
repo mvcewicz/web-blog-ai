@@ -1,5 +1,6 @@
 "use server";
 
+import { prismaClient } from "@wba/prisma";
 import { Suspense } from "react";
 import { BlogFeed } from "@wba/next/src/lib/features/blog/components/blog-feed";
 import { BlogFeedSkeleton } from "@wba/next/src/lib/features/blog/components/blog-skeleton";
@@ -12,7 +13,6 @@ import {
   BlogLoadMoreComments,
   CommentForm,
 } from "@wba/next/src/lib/features/blog/components/blog-comments";
-import { fetchBlogs } from "@wba/next/src/lib/features/blog/api/fetch-blogs";
 
 type BlogPageProps = {
   params: {
@@ -41,8 +41,8 @@ async function BlogComments(props: { slug: string }) {
 }
 
 export const generateStaticParams = async () => {
-  const blogs = await fetchBlogs({ page: 1 });
-  return blogs.items.map((blog) => ({
+  const blogs = await prismaClient.blog.findMany();
+  return blogs.map((blog) => ({
     params: {
       slug: blog.slug,
     },

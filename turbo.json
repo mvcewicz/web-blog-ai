@@ -1,6 +1,8 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDotEnv": [".env"],
+  "globalDotEnv": [
+    ".env"
+  ],
   "pipeline": {
     "build": {
       "outputs": [
@@ -12,15 +14,24 @@
     "start": {},
     "lint": {},
     "deploy": {
-      "dotEnv": [".env"]
+      "dotEnv": [
+        ".env"
+      ]
     },
     "@wba/iac#deploy": {
-      "dotEnv": [".env"]
+      "dotEnv": [
+        ".env"
+      ]
     },
     "lint:fix": {},
     "type-check": {},
+    "deploy:ci": {
+      "dependsOn": ["^build"]
+    },
     "@wba/scripts#start": {
-      "dependsOn": ["@wba/logic#build"]
+      "dependsOn": [
+        "@wba/logic#build"
+      ]
     }
   }
 }

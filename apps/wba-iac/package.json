@@ -8,9 +8,11 @@
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
-    "deploy": "cdk deploy --profile personal"
+    "deploy": "cdk deploy",
+    "deploy:ci": "cdk deploy --ci=true --require-approval=never"
   },
   "devDependencies": {
+    "esbuild": "^0.19.10",
     "@types/babel__traverse": "^7.20.4",
     "@types/jest": "^29.5.10",
     "@types/node": "^20.10.2",

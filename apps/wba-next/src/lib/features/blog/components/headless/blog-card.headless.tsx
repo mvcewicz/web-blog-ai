@@ -26,12 +26,12 @@ export const HeaderImage = ({
 }: HeadlessComponentProps<typeof Image>) => {
   return (
     <Image
+      {...props}
       className={cn(
         "flex aspect-square w-full flex-1 rounded-xl duration-100 group-hover:scale-95",
         className,
       )}
       alt={props.alt}
-      {...props}
     />
   );
 };

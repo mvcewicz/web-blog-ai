@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "lint:fix": "next lint",
-    "db:seed": "tsx src/lib/db/seed.ts"
+    "lint:fix": "next lint"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.28.1",
@@ -27,7 +26,7 @@
     "graphql-yoga": "^4.0.5",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.274.0",
-    "next": "^14.0.5-canary.24",
+    "next": "14.0.5-canary.24",
     "next-themes": "^0.2.1",
     "openai": "^4.7.1",
     "postcss": "8.4.29",

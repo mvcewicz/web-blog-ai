@@ -1,3 +1,6 @@
+"use server";
+
+import { prismaClient } from "@wba/prisma";
 import { BlogsList } from "@wba/next/src/lib/features/blog/components/blogs-list";
 import { Button } from "@wba/next/src/lib/ui/button";
 import Link from "next/link";
@@ -59,14 +62,12 @@ function BlogsPagination({ page, total }: BlogsPaginationProps) {
 }
 
 export const generateStaticParams = async () => {
-  const blogs = await fetchBlogs();
-  return Array.from({ length: blogs.pagination.total / BLOGS_PER_PAGE }).map(
-    (_, index) => ({
-      params: {
-        page: String(index + 1),
-      },
-    }),
-  );
+  const blogCount = await prismaClient.blog.count();
+  return Array.from({ length: blogCount / BLOGS_PER_PAGE }).map((_, index) => ({
+    params: {
+      page: String(index + 1),
+    },
+  }));
 };
 
 export default async function BlogsPage({ params }: BlogsPageProps) {

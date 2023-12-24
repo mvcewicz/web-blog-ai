@@ -1,7 +1,11 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const path = require("node:path");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
     ppr: true,
+    outputFileTracingRoot: path.join(__dirname, "../../"),
   },
   async rewrites() {
     return [
@@ -17,7 +21,14 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  transpilePackages: ["./src/components/ui"],
+
+  transpilePackages: [
+    "@wba/tsconfig",
+    "@wba/prisma",
+    "@wba/openai",
+    "@wba/eslint-config-custom",
+    "@wba/types",
+  ],
 };
 
 module.exports = nextConfig;
