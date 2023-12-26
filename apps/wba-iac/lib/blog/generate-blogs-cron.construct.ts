@@ -4,6 +4,8 @@ import {
   aws_events_targets,
   aws_lambda,
   aws_lambda_nodejs,
+  aws_secretsmanager,
+  aws_ssm,
 } from "aws-cdk-lib";
 import * as path from "path";
 import * as cdk from "aws-cdk-lib";
@@ -45,17 +47,25 @@ export class GenerateBlogsCronConstruct extends Construct {
   }
 
   createEnvironmentVariables() {
+    const openaiSecret = aws_secretsmanager.Secret.fromSecretNameV2(
+      this,
+      "/wba-iac/openai",
+      "openai",
+    );
+    const cronSecret = aws_secretsmanager.Secret.fromSecretNameV2(
+      this,
+      "/wba-iac/cron",
+      "cron",
+    );
+    const wbaApiUrl = aws_ssm.StringParameter.fromStringParameterName(
+      this,
+      "/wba-iac/webhook-url",
+      "webhook-url",
+    );
     return {
-      POSTGRES_URL: process.env.POSTGRES_URL,
-      POSTGRES_PRISMA_URL: process.env.POSTGRES_PRISMA_URL,
-      POSTGRES_URL_NON_POOLING: process.env.POSTGRES_URL_NON_POOLING,
-      POSTGRES_USER: process.env.POSTGRES_USER,
-      POSTGRES_HOST: process.env.POSTGRES_HOST,
-      POSTGRES_PASSWORD: process.env.POSTGRES_PASSWORD,
-      POSTGRES_DATABASE: process.env.POSTGRES_DATABASE,
-      OPENAI_API_KEY: process.env.OPENAI_API_KEY,
-      CRON_SECRET_KEY: process.env.CRON_SECRET_KEY,
-      WBA_API_URL: process.env.WBA_API_URL,
-    } as Record<string, string>;
+      OPENAI_API_KEY: openaiSecret.secretValue.unsafeUnwrap(),
+      CRON_SECRET_KEY: cronSecret.secretValue.unsafeUnwrap(),
+      WBA_API_URL: wbaApiUrl.stringValue,
+    };
   }
 }

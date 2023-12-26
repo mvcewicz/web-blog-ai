@@ -12,21 +12,22 @@
     "deploy:ci": "cdk deploy --ci=true --require-approval=never"
   },
   "devDependencies": {
-    "esbuild": "^0.19.10",
     "@types/babel__traverse": "^7.20.4",
     "@types/jest": "^29.5.10",
     "@types/node": "^20.10.2",
+    "@wba/eslint-config-custom": "workspace:*",
+    "@wba/logic": "workspace:*",
+    "@wba/tsconfig": "workspace:*",
     "aws-cdk": "^2.113.0",
+    "esbuild": "^0.19.10",
     "jest": "^29.7.0",
     "ts-jest": "^29.1.1",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.3.2",
-    "@wba/eslint-config-custom": "workspace:*",
-    "@wba/logic": "workspace:*",
-    "@wba/tsconfig": "workspace:*"
+    "typescript": "^5.3.2"
   },
   "dependencies": {
+    "@aws-sdk/client-ssm": "^3.478.0",
     "aws-cdk-lib": "^2.113.0",
     "constructs": "^10.0.0",
     "source-map-support": "^0.5.21"
