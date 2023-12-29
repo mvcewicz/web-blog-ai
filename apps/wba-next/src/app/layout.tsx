@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { cn } from "@wba/next/src/lib/helpers/ui";
 import { Footer } from "@wba/next/src/lib/components/footer";
-import { ReactNode } from "react";
+import { ReactNode, Suspense } from "react";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "@wba/next/src/lib/helpers/clients/query-client";
 import { ThemeProvider } from "@wba/next/src/lib/providers/theme.provider";
@@ -33,7 +33,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
           "bg-background m-0 flex min-h-screen flex-col",
         )}
       >
-        <PageProgressBar />
+        <Suspense>
+          <PageProgressBar />
+        </Suspense>
         <QueryClientProvider client={queryClient}>
           <ThemeProvider
             attribute="class"
