@@ -50,22 +50,22 @@ export class GenerateBlogsCronConstruct extends Construct {
     const openaiSecret = aws_secretsmanager.Secret.fromSecretNameV2(
       this,
       "/wba-iac/openai",
-      "openai",
+      "/wba-iac/openai",
     );
     const cronSecret = aws_secretsmanager.Secret.fromSecretNameV2(
       this,
       "/wba-iac/cron",
-      "cron",
+      "/wba-iac/cron",
     );
     const wbaApiUrl = aws_ssm.StringParameter.fromStringParameterName(
       this,
       "/wba-iac/webhook-url",
-      "webhook-url",
+      "/wba-iac/webhook-url",
     );
     return {
-      OPENAI_API_KEY: openaiSecret.secretValue.unsafeUnwrap(),
-      CRON_SECRET_KEY: cronSecret.secretValue.unsafeUnwrap(),
-      WBA_API_URL: wbaApiUrl.stringValue,
+      OPENAI_API_KEY: openaiSecret.secretValueFromJson("apiKey").unsafeUnwrap(),
+      CRON_SECRET_KEY: cronSecret.secretValueFromJson("apiKey").unsafeUnwrap(),
+      WBA_API_URL: wbaApiUrl.stringValue.toString(),
     };
   }
 }
