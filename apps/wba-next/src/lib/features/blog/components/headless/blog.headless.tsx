@@ -1,4 +1,4 @@
-import { cn } from "@wba/next/src/lib/helpers/utils";
+import { cn } from "@wba/next/src/lib/helpers/ui";
 import ReactMarkdown from "react-markdown";
 import { Avatar } from "@wba/next/src/lib/features/blog/components/avatar";
 import { HeadlessComponentProps } from "@wba/next/src/lib/types/component.type";

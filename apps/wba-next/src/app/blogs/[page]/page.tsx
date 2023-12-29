@@ -2,11 +2,17 @@
 
 import { prismaClient } from "@wba/prisma";
 import { BlogsList } from "@wba/next/src/lib/features/blog/components/blogs-list";
-import { Button } from "@wba/next/src/lib/ui/button";
-import Link from "next/link";
 import { useMemo } from "react";
 import { BLOGS_PER_PAGE } from "@wba/next/src/lib/features/blog/api/blogs.api";
 import { fetchBlogs } from "@wba/next/src/lib/features/blog/api/fetch-blogs";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@wba/next/src/lib/ui/pagination";
 
 type BlogsPageProps = {
   params: {
@@ -21,43 +27,58 @@ type BlogsPaginationProps = {
 
 function getPaginationOptions(page: number, total: number) {
   const options = [];
-
   // prev
   if (page > 1) {
     options.push(page - 1);
   }
-
   // current
   options.push(page);
-
   // next
   if (page < total / BLOGS_PER_PAGE - 1) {
     options.push(page + 1);
   }
-
-  return options;
+  const hasNext = page < total / BLOGS_PER_PAGE - 1;
+  const hasPrev = page > 1;
+  const isNextEllipsisVisible = page < total / BLOGS_PER_PAGE - 2;
+  const isPrevEllipsisVisible = page > 2;
+  return {
+    options,
+    hasNext,
+    hasPrev,
+    isNextEllipsisVisible,
+    isPrevEllipsisVisible,
+  };
 }
 
 function BlogsPagination({ page, total }: BlogsPaginationProps) {
-  const paginationOptions = useMemo(
-    () => getPaginationOptions(page, total),
-    [page, total],
-  );
-
+  const {
+    options,
+    hasNext,
+    hasPrev,
+    isNextEllipsisVisible,
+    isPrevEllipsisVisible,
+  } = useMemo(() => getPaginationOptions(page, total), [page, total]);
   if (!total) {
     return null;
   }
-
   return (
-    <ul role="list" className="flex items-center justify-center gap-2">
-      {paginationOptions.map((option) => (
-        <li key={option}>
-          <Link href={`/blogs/${option}`}>
-            <Button variant="outline">{option}</Button>
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <Pagination>
+      <PaginationContent>
+        {hasPrev && <PaginationPrevious href={`/blogs/${page - 1}`} />}
+        {isPrevEllipsisVisible && <PaginationEllipsis />}
+        {options.map((option) => (
+          <PaginationLink
+            key={option}
+            isActive={option === page}
+            href={`/blogs/${option}`}
+          >
+            {option}
+          </PaginationLink>
+        ))}
+        {isNextEllipsisVisible && <PaginationEllipsis />}
+        {hasNext && <PaginationNext href={`/blogs/${page + 1}`} />}
+      </PaginationContent>
+    </Pagination>
   );
 }
 

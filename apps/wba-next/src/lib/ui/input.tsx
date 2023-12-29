@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { cn } from "@wba/next/src/lib/helpers/utils";
+import { cn } from "@wba/next/src/lib/helpers/ui";
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {}

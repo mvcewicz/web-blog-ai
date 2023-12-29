@@ -1,6 +1,6 @@
 import { cva } from "class-variance-authority";
 import Image from "next/image";
-import { cn } from "@wba/next/src/lib/helpers/utils";
+import { cn } from "@wba/next/src/lib/helpers/ui";
 
 const avatarBorderClassName =
   "rounded-full border-transparent border-t-colored border-l-colored border-4";

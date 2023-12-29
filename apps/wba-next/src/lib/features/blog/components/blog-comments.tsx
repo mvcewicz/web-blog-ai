@@ -2,7 +2,7 @@
 
 import { Textarea } from "@wba/next/src/lib/ui/textarea";
 import { Button, buttonVariants } from "@wba/next/src/lib/ui/button";
-import { cn } from "@wba/next/src/lib/helpers/utils";
+import { cn } from "@wba/next/src/lib/helpers/ui";
 import { useCommentsContext } from "@wba/next/src/lib/features/blog/contexts/comments.context";
 import { useMutation } from "@tanstack/react-query";
 import { fetcher } from "@wba/next/src/lib/helpers/fetcher";
