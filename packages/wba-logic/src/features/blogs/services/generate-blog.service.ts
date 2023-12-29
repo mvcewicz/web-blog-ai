@@ -20,8 +20,8 @@ export class GenerateBlogService {
   static async getExcludedTopics() {
     const url = new URL(`${process.env.WBA_API_URL}/blogs`);
     url.searchParams.set("fields", "title");
-    const blogs = (await (await fetch(url)).json()) as Blog[];
-    return Array.from(new Set(blogs.map((blog) => blog.title)));
+    const blogs = (await (await fetch(url)).json()) as { items: Blog[] };
+    return Array.from(new Set(blogs.items.map((blog) => blog.title)));
   }
 
   static getPromptKeywords() {

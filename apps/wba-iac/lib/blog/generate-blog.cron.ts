@@ -2,7 +2,8 @@ import { GenerateBlogService } from "@wba/logic/src/features/blogs/services/gene
 
 const generateBlogCron = async () => {
   const blogDTO = await GenerateBlogService.generate();
-  void GenerateBlogService.publish(blogDTO);
+  const result = await GenerateBlogService.publish(blogDTO);
+  console.info(result);
 };
 
 export const handler = generateBlogCron;

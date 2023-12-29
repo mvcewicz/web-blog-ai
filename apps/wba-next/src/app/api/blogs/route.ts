@@ -43,7 +43,6 @@ export async function GET(request: NextRequest) {
     }),
     prismaClient.blog.count(),
   ]);
-
   const response = {
     items: blogs,
     pagination: {
@@ -52,6 +51,5 @@ export async function GET(request: NextRequest) {
       total: totalBlogs,
     },
   };
-
   return new Response(JSON.stringify(response));
 }
