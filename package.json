@@ -6,6 +6,7 @@
     "dev": "dotenv -e .env turbo dev",
     "build": "dotenv -e .env turbo run build",
     "start": "dotenv -e .env turbo run start",
+    "db:gui": "dotenv -e .env turbo run db:gui",
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint:fix",
     "deploy": "dotenv -e .env turbo run deploy",

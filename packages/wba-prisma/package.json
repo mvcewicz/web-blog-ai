@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "main": "src/prisma.ts",
   "scripts": {
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "db:gui": "prisma studio"
   },
   "peerDependencies": {
     "prisma": "^5.6.0",

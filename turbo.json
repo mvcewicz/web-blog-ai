@@ -25,6 +25,7 @@
     },
     "lint:fix": {},
     "type-check": {},
+    "db:gui": {},
     "deploy:ci": {
       "dependsOn": ["^build"]
     },
