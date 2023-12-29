@@ -162,3 +162,7 @@
   -webkit-animation: cascade 1.5s 0.75s ease infinite backwards;
   animation: cascade 1.5s 0.75s ease infinite backwards;
 }
+
+#nprogress .bar {
+  background: #a54fdc !important;
+}
